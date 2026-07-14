@@ -1,0 +1,22 @@
+node_modules/
+dist/
+.env
+.env.*
+.DS_Store
+*.log
+
+# Local VTube authentication/session material
+packages/controller/.vts-token.json
+
+# Generated review runs; retain the directory documentation only
+runs/*
+!runs/README.md
+
+# Private/licensed avatar source and exported model binaries
+assets/local/
+
+# Beads / Dolt files (added by bd init)
+.dolt/
+*.db
+.beads-credential-key
+.beads/proxieddb/
