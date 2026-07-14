@@ -12,6 +12,16 @@ const plan = load("example-animation-plan.json") as AnimationPlan;
 const profile = load("rig-profile.local-svg.json") as LocalSvgRigProfile;
 const frame = (params: Record<string, number> = {}, poses: RenderScriptFrameRecord["poses"] = []): RenderScriptFrameRecord => ({ record: "frame", tick: 0, atMs: 0, phase: "playback", params, poses, activeEventIds: [] });
 const clone = <T>(v: T): T => JSON.parse(JSON.stringify(v));
+type PlayerPayload = {
+  frames: Array<{ atMs: number; controls: Record<string, number>; currentState: string | null }>;
+  neutralControls: Record<string, number>;
+};
+
+function playerPayload(html: string): PlayerPayload {
+  const encoded = html.match(/<script id="playback-data" type="application\/json">([^<]+)<\/script>/)?.[1];
+  assert.ok(encoded);
+  return JSON.parse(encoded) as PlayerPayload;
+}
 
 test("frame resolver maps asymmetric values, includes all controls, and returns exact neutral", () => {
   const custom = clone(profile); custom.controls.headX = { svgControlId: "avatar-head-x", min: -20, max: 40, neutral: 10 };
@@ -25,7 +35,7 @@ test("frame resolver maps asymmetric values, includes all controls, and returns 
 test("pose targets scale from neutral and later different poses overwrite collisions", () => {
   const custom = clone(profile); custom.controls.boundary.neutral = .2;
   const values = resolveLocalSvgFrame(frame({}, [{ name: "boundary", weight: .5, sourceEventIds: [] }, { name: "defer_to_human", weight: .5, sourceEventIds: [] }]), custom);
-  assert.ok(Math.abs(values["avatar-boundary"]! - .425) < Number.EPSILON);
+  assert.ok(Math.abs(values["avatar-boundary"]! - .54) < Number.EPSILON);
   assert.throws(() => resolveLocalSvgFrame(frame({ missing: 1 }), custom), /no parameter mapping.*missing/);
   assert.throws(() => resolveLocalSvgFrame(frame({}, [{ name: "missing", weight: 1, sourceEventIds: [] }]), custom), /no pose mapping.*missing/);
 });
@@ -42,20 +52,71 @@ test("resolved controls are quantized to four decimals and normalize negative ze
 test("generator is deterministic, self-contained, and embeds playback and neutral data", () => {
   const a = generateLocalSvgPlayer(plan, profile), b = generateLocalSvgPlayer(plan, profile);
   assert.equal(a, b);
-  for (const text of ["<svg", ">Start<", "Pause", "Restart", "countdown", "renderScript", "neutralControls", "currentState", plan.tracks.overlays![0]!.text, "offline prototype", "current"]) assert.ok(a.includes(text), text);
+  for (const text of ["<svg", "mouth-open", "HANDOFF TO DAVID", ">Start<", "Pause", "Restart", "countdown", "visualMapping", "renderScript", "neutralControls", "currentState", plan.tracks.overlays![0]!.text, "offline prototype", "current"]) assert.ok(a.includes(text), text);
   assert.doesNotMatch(a, /(?:https?:|<script[^>]+src=|<link\b|\b(?:fetch|XMLHttpRequest|WebSocket|import)\s*\()/i);
+  assert.doesNotMatch(a, /Math\.random|setInterval/);
   assert.match(a, /countdown" hidden>3/); assert.match(a, /status">Ready</); assert.match(a, /let mode='ready'/);
   assert.match(a, /start\.addEventListener\('click',begin\)/); assert.match(a, /function restart\(\).*setNeutral\(\);status\.classList\.remove\('error'\).*mode='countdown'/s); assert.match(a, /at>=data\.metadata\.durationMs\)\{setNeutral\(\)/);
   assert.match(a, /current\.textContent=frame\.currentState\|\|'neutral'/); assert.match(a, /\(n%60000\)\/1000/);
 });
 
 test("generated reference frames expose plan-derived semantic state names", () => {
-  const html = generateLocalSvgPlayer(plan, profile);
-  const encoded = html.match(/<script id="playback-data" type="application\/json">([^<]+)<\/script>/)?.[1];
-  assert.ok(encoded);
-  const payload = JSON.parse(encoded) as { frames: Array<{ atMs: number; currentState: string | null }> };
+  const payload = playerPayload(generateLocalSvgPlayer(plan, profile));
   assert.equal(payload.frames.find(frame => frame.atMs === 0)?.currentState, "listening");
   assert.equal(payload.frames.find(frame => frame.atMs === 4500)?.currentState, "thinking");
+});
+
+test("reference states have distinct restrained control fingerprints and intentional stillness", () => {
+  const payload = playerPayload(generateLocalSvgPlayer(plan, profile));
+  const controlsAt = (atMs: number) => {
+    const selected = payload.frames.find(frame => frame.atMs === atMs);
+    assert.ok(selected, `missing frame at ${atMs}`);
+    return selected.controls;
+  };
+  const listening = controlsAt(3000);
+  const thinking = controlsAt(8500);
+  const agreement = controlsAt(11500);
+  const uncertain = controlsAt(14500);
+  const speaking = controlsAt(22000);
+  const deferring = controlsAt(26000);
+  const neutral = controlsAt(28000);
+
+  assert.ok(listening["avatar-head-y"]! > 0 && listening["avatar-gaze-y"]! > 0);
+  assert.ok(thinking["avatar-gaze-x"]! < 0 && thinking["avatar-gaze-y"]! > listening["avatar-gaze-y"]! && thinking["avatar-brows"]! < 0);
+  assert.ok(agreement["avatar-smile"]! > 0);
+  assert.ok(uncertain["avatar-caveat"]! > 0 && uncertain["avatar-head-z"]! > 0);
+  assert.ok(speaking["avatar-mouth"]! > 0);
+  assert.ok(deferring["avatar-boundary"]! > 0);
+  assert.deepEqual(neutral, payload.neutralControls);
+  assert.equal(new Set([listening, thinking, agreement, uncertain, speaking, deferring, neutral].map(value => JSON.stringify(value))).size, 7);
+
+  let longestStillRun = 1;
+  let currentRun = 1;
+  for (let index = 1; index < payload.frames.length; index += 1) {
+    if (JSON.stringify(payload.frames[index]!.controls) === JSON.stringify(payload.frames[index - 1]!.controls)) {
+      currentRun += 1;
+      longestStillRun = Math.max(longestStillRun, currentRun);
+    } else {
+      currentRun = 1;
+    }
+  }
+  assert.ok(longestStillRun >= 20, `expected at least one second of unchanged controls, got ${longestStillRun} frames`);
+});
+
+test("boundary remains distinct from deferral and profile targets stay bounded", () => {
+  const boundary = resolveLocalSvgFrame(frame({}, [{ name: "boundary", weight: .65, sourceEventIds: ["boundary"] }]), profile);
+  const deferral = resolveLocalSvgFrame(frame({}, [{ name: "defer_to_human", weight: .55, sourceEventIds: ["defer"] }]), profile);
+  assert.notDeepEqual(boundary, deferral);
+  assert.ok(boundary["avatar-boundary"]! > deferral["avatar-boundary"]!);
+  assert.ok(boundary["avatar-brows"]! < 0 && deferral["avatar-brows"]! > 0);
+
+  for (const targets of Object.values(profile.poses)) {
+    for (const target of targets) {
+      const control = profile.controls[target.control]!;
+      assert.ok(target.value >= control.min && target.value <= control.max, `${target.control} target out of range`);
+    }
+  }
+  assert.doesNotMatch(JSON.stringify(plan), /avatar-|svgControlId|vtsInputParameter|FaceAngle|hotkey/i);
 });
 
 test("untrusted title and disclosure cannot escape HTML or script contexts", () => {

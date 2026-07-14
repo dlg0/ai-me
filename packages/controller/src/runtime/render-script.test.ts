@@ -26,12 +26,12 @@ test("small render script is an exact JSONL golden including trailing newline", 
   const expected = [
     '{"record":"header","schemaVersion":"render-script.v1","title":"test","targetRig":"abstract-test","safetyMode":"local_operator_approved","durationMs":1000,"effectiveStopMs":1000,"tickMs":500,"transitionMs":500,"easing":"smoothstep:t*t*(3-2*t)","valueDecimals":4,"posePolicy":"unique abstract pose names; coalesce same-name contributions by maximum weight with sorted sourceEventIds; state before gesture, then startMs and event ID; after rig resolution later listed poses win renderer-control collisions"}',
     '{"record":"event","edge":"start","atMs":0,"eventId":"s","eventType":"state","name":"listening"}',
-    '{"record":"frame","tick":0,"atMs":0,"phase":"playback","params":{"head.angle.x":0,"head.angle.y":0,"head.angle.z":0},"poses":[],"activeEventIds":["s"]}',
-    '{"record":"frame","tick":1,"atMs":500,"phase":"playback","params":{"head.angle.x":0,"head.angle.y":0.104,"head.angle.z":0},"poses":[],"activeEventIds":["s"]}',
+    '{"record":"frame","tick":0,"atMs":0,"phase":"playback","params":{"eye.gaze.x":0,"eye.gaze.y":0,"head.angle.x":0,"head.angle.y":0,"head.angle.z":0},"poses":[],"activeEventIds":["s"]}',
+    '{"record":"frame","tick":1,"atMs":500,"phase":"playback","params":{"eye.gaze.x":0,"eye.gaze.y":0,"head.angle.x":0,"head.angle.y":0.104,"head.angle.z":0},"poses":[],"activeEventIds":["s"]}',
     '{"record":"event","edge":"end","atMs":1000,"eventId":"s","eventType":"state","name":"listening"}',
-    '{"record":"frame","tick":2,"atMs":1000,"phase":"playback","params":{"head.angle.x":0,"head.angle.y":0.104,"head.angle.z":0},"poses":[],"activeEventIds":[]}',
+    '{"record":"frame","tick":2,"atMs":1000,"phase":"playback","params":{"eye.gaze.x":0,"eye.gaze.y":0,"head.angle.x":0,"head.angle.y":0.104,"head.angle.z":0},"poses":[],"activeEventIds":[]}',
     '{"record":"end","atMs":1000,"outcome":"completed"}',
-    '{"record":"reset","atMs":1000,"params":{"head.angle.x":0,"head.angle.y":0,"head.angle.z":0},"poses":[]}',
+    '{"record":"reset","atMs":1000,"params":{"eye.gaze.x":0,"eye.gaze.y":0,"head.angle.x":0,"head.angle.y":0,"head.angle.z":0},"poses":[]}',
     '{"record":"release","atMs":1000}'
   ].join("\n") + "\n";
   assert.equal(actual, expected);
