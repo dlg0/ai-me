@@ -23,23 +23,23 @@ npm run check
 
 must pass from a clean checkout.
 
-## Phase 1 — Offline VTube animation review
+## Phase 1 — Offline local SVG animation review
 
 Goal:
 
-> A semantic animation plan replays deterministically through VTube Studio on a loaded Live2D model and produces review artefacts.
+> A semantic animation plan replays deterministically in a self-contained local HTML/SVG player and produces review artifacts.
 
 Runtime deliverables:
 
-- authenticated VTube session with local token persistence;
-- loaded-model/hotkey/input-parameter preflight;
-- rig-profile-driven hotkey execution;
-- clocked parameter injection with easing and refresh;
+- `local_svg` rig profile;
+- deterministic fixed-tick abstract render script;
+- dependency-free HTML/SVG player that opens via `file://`;
+- restrained rig-profile-driven mappings with easing and neutral reset;
 - neutral reset/control release;
 - JSONL renderer log and run folder;
-- manual or semi-automated recording recipe.
+- full-duration AI-delegate disclosure and review/replay recipe.
 
-Parallel asset deliverables:
+Deferred VTube/asset reference track (not required for Phase 1):
 
 - generic test rig or known-good model for runtime development;
 - selected David-associated avatar source;
@@ -49,11 +49,12 @@ Parallel asset deliverables:
 
 Exit criteria:
 
-- one documented command sequence starts a 20–45 second animation;
-- the loaded rig visibly expresses the six target states;
+- one documented command sequence creates and opens a 20–45 second animation at approximately 320 px;
+- the abstract avatar visibly expresses the six target states;
 - the plan, commands, review notes, and recording can be inspected together;
 - repeat playback is materially consistent;
-- failure to authenticate, find a model, resolve a hotkey, or resolve a parameter is explicit.
+- playback requires no network, external application, or licensed model asset;
+- disclosure remains visible for the full duration.
 
 ## Phase 2 — Planner iteration loop
 

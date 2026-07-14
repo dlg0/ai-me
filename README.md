@@ -4,7 +4,7 @@ A project scaffold for building a clearly disclosed, stylised AI delegate whose 
 
 The immediate experiment is deliberately narrow:
 
-> Given a Live2D model loaded in VTube Studio, turn a semantic animation plan into a short, repeatable animation that David can review and iterate on.
+> Turn a semantic animation plan into a short, repeatable local SVG animation that David can review and iterate on without policy-blocked software.
 
 The larger project may later add speech, live meeting context, OBS virtual-camera output, and Microsoft Teams assistance. It is not intended to create a covert deepfake or make other participants believe David is personally present when he is not.
 
@@ -17,8 +17,8 @@ scene brief
   -> semantic state/gesture plan
   -> validation + taste constraints
   -> deterministic mannerism runtime
-  -> rig-specific VTube Studio commands
-  -> Live2D avatar
+  -> rig-profile-specific renderer controls
+  -> local SVG avatar (Milestone 1)
 ```
 
 The avatar should make otherwise hidden agent states legible: listening, thinking, qualified confidence, uncertainty, agreement, boundary-setting, and deferral to David.
@@ -39,6 +39,8 @@ Implemented now:
 
 Not implemented yet:
 
+- the `local_svg` rig profile, fixed-tick render script, and self-contained player;
+- restrained SVG mappings, durable artifacts, and visual review evidence;
 - persisted VTube authentication;
 - timed hotkey playback;
 - smoothed/repeated parameter injection;
@@ -66,9 +68,9 @@ Milestone 1 proves the renderer/control loop, not the whole meeting-agent system
 
 1. A human or AI agent writes `animation-plan.v1` JSON from a short scene brief.
 2. The controller validates and diagnoses the plan.
-3. A playback runtime authenticates to local VTube Studio.
-4. The runtime resolves semantic controls through a rig profile.
-5. It plays a calm 20–45 second sequence on a Live2D model.
+3. A fixed-tick playback runtime resolves semantic controls through a `local_svg` rig profile.
+4. The renderer generates deterministic frames and durable logs.
+5. A self-contained `file://` HTML/SVG player plays a calm 20–45 second sequence at about 320 px with full-duration disclosure.
 6. The run saves the plan, renderer log, review notes, and optionally a recording.
 
 Programmatic LLM integration comes after this loop is visually worth iterating. For Milestone 1, using a coding/chat agent to create the plan file is sufficient.
@@ -116,7 +118,7 @@ templates/                        run/review artefact templates
 2. **Intent first.** The planner chooses semantic states; deterministic code owns timing, smoothing, and bounds.
 3. **Reviewable by construction.** Every behaviour comes from a durable plan that can be diffed and replayed.
 4. **Stillness is allowed.** Professional presence requires restraint, not constant motion.
-5. **Renderer-agnostic ontology.** VTube Studio is the first adapter, not the permanent conceptual model.
+5. **Renderer-agnostic ontology.** Local SVG is the Milestone 1 adapter; VTube Studio is a deferred future adapter.
 6. **Truthful status.** A source-file skeleton is not a completed capability; `STATUS.md` and tests govern handoff claims.
 
 ## First demo scene

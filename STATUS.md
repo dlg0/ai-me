@@ -14,19 +14,23 @@ Last clean-check review: **14 July 2026**. See `HANDOFF_REVIEW.md`.
 | Dry-run ordered timeline | Implemented | `npm run demo:dry` |
 | Rig-profile schema + validation | Implemented | `npm run validate:rig` |
 | Semantic-to-rig mapping inspection | Implemented scaffold | `npm run demo:mapping`; no VTube commands are sent |
+| `local_svg` rig profile | Planned, not implemented | Milestone 1 pivot; ADR 0005 |
+| Deterministic fixed-tick abstract render script | Planned, not implemented | No visual output exists yet |
+| Self-contained `file://` HTML/SVG player | Planned, not implemented | No player or manual visual evidence yet |
+| Restrained SVG mapping + durable review artifacts | Planned, not implemented | Target is a 20–45 second review at ~320 px |
 | VTube WebSocket connection | Client scaffold only | API-state request exists; no production authentication/session wrapper |
-| VTube authentication/token persistence | Not implemented | M1-004 |
-| Timed hotkey playback | Not implemented | M1-005 |
-| Smoothed parameter injection loop | Not implemented | M1-006 |
+| VTube authentication/token persistence | Deferred | IT policy blocks installation; future adapter only |
+| Timed VTube hotkey playback | Deferred | Future VTube adapter only |
+| Smoothed VTube parameter injection loop | Deferred | Future VTube adapter only |
 | Durable run folder + JSONL renderer log | Not implemented | M1-008 |
-| Review clip | Blocked on rig + M1 playback | M1-009 |
+| Review clip | Blocked on local SVG playback + artifacts | No visual evidence yet |
 | Programmatic LLM planner integration | Not implemented | Phase 2 |
 | OBS virtual camera / Teams | Not started | Later phases |
 
 ## Recommended next issue
 
-Complete **M1-004 — VTube Studio connection and authentication**, including token persistence, clear preflight errors, and a manual test recipe on macOS. Before choosing between the in-repo thin client and `VTubeStudioJS`, perform a small documented comparison; do not maintain two implementations.
+Implement the ADR 0005 path in order: a `local_svg` rig profile, deterministic fixed-tick abstract render script, self-contained `file://` HTML/SVG player, restrained mappings, durable artifacts, then review/replay. These capabilities are planned, not implemented.
 
 ## External dependency
 
-A reviewable visual demo requires a loaded Live2D model. Development can proceed with any known-good test model. The David-specific avatar preparation/rigging work is a parallel asset track described in `docs/ASSET_PIPELINE.md`.
+No external application or licensed model asset is required for the Milestone 1 SVG path. VTube/Live2D and the David-specific avatar work remain deferred reference tracks described in `docs/ASSET_PIPELINE.md`.

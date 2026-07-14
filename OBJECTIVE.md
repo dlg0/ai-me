@@ -56,12 +56,12 @@ Mannerism runtime
         ↓
 Rig profile + renderer adapter
         ↓
-VTube Studio / Live2D avatar
+Local SVG avatar for Milestone 1
         ↓
 Review recording, then later OBS/Teams
 ```
 
-The first deliverable is a reviewable offline animation. The larger product may become a local or independently visible AI meeting delegate.
+The first deliverable is a reviewable offline animation in a self-contained local player. VTube Studio/Live2D remains a deferred future renderer and asset path. The larger product may become a local or independently visible AI meeting delegate.
 
 ## Parallel workstreams
 
@@ -71,7 +71,7 @@ Build validation, mapping, playback, review artefacts, and eventually planning/l
 
 ### Avatar artwork and rigging
 
-Take an existing avatar or illustration, separate/redraw expressive parts, rig them in Live2D, configure VTube Studio inputs/hotkeys, and publish a versioned rig profile.
+For Milestone 1, create a small first-party SVG avatar and publish a versioned `local_svg` rig profile. A later, policy-approved asset track may take an existing avatar or illustration, separate/redraw expressive parts, rig them in Live2D, configure VTube Studio inputs/hotkeys, and publish its own rig profile.
 
 These workstreams meet at the rig profile. Neither should embed assumptions that make the other impossible to change.
 
@@ -109,7 +109,7 @@ Must be able to tell whether they are interacting with David, David's AI delegat
 
 ### First milestone
 
-A reviewer watches a 20–45 second VTube Studio animation generated from an inspectable semantic plan and can correctly identify:
+A reviewer opens a self-contained local HTML/SVG player, watches a 20–45 second animation generated from an inspectable semantic plan at approximately 320px, and can correctly identify:
 
 - listening;
 - thinking;
@@ -117,6 +117,8 @@ A reviewer watches a 20–45 second VTube Studio animation generated from an ins
 - uncertainty/caveat;
 - a qualified-answer segment;
 - deferral to David.
+
+The player works without network access, an external application, or licensed model assets and identifies itself as an offline AI-delegate prototype for the full duration.
 
 ### Larger project
 

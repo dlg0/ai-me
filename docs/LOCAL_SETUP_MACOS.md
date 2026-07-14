@@ -8,9 +8,7 @@ This setup supports development and offline review. It does not configure synthe
 
 - macOS 13 or later; David's current Mac is suitable;
 - Node.js 22 or later;
-- VTube Studio desktop app;
-- a Live2D model available to load;
-- OBS Studio 30 or later for later capture/virtual-camera tests.
+- a modern browser capable of opening a local `file://` HTML document.
 
 ## Repository setup
 
@@ -24,9 +22,15 @@ npm run demo:dry
 npm run demo:mapping
 ```
 
-The last two commands require no VTube installation and make no network calls.
+The last two commands require no VTube installation and make no network calls. The planned Milestone 1 command will generate a self-contained HTML/SVG player for `file://` review; it is not implemented yet.
 
-## VTube Studio setup
+## Current local SVG review path (planned)
+
+The critical path is `local_svg` rig profile → deterministic fixed-tick abstract render script → self-contained `file://` HTML/SVG player → restrained mapping → durable artifacts → review/replay. It will require no network, external application, or licensed model assets, show AI-delegate disclosure for the full duration, and target a 20–45 second review at approximately 320 px. Do not treat this description as implementation or visual evidence.
+
+## Deferred optional VTube Studio setup
+
+**This section is future reference only. Organizational IT policy currently blocks installation. Do not bypass policy or use these steps until installation is explicitly approved.**
 
 The supported desktop distribution is the official Steam build linked from
 https://denchisoft.com/ (Steam app `1325860`). Do not download a model or app

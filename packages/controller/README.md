@@ -1,6 +1,6 @@
 # Controller Package
 
-TypeScript scaffold for validating semantic animation plans, checking rig profiles, inspecting renderer mappings, and building the eventual VTube Studio playback runtime.
+TypeScript scaffold for validating semantic animation plans, checking rig profiles, inspecting renderer mappings, and building the Milestone 1 local SVG playback runtime. The VTube Studio client remains a deferred future-adapter scaffold.
 
 ## Run from repository root
 

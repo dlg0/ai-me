@@ -1,6 +1,12 @@
 # Technology Choices
 
-## Initial renderer — VTube Studio + Live2D
+## Milestone 1 renderer — first-party local SVG
+
+A deterministic fixed-tick script will generate a self-contained HTML/SVG player opened via `file://`. It will require no network, external app, or licensed model asset and will render full-duration disclosure. This path is accepted by ADR 0005 but is not yet implemented.
+
+The semantic plan remains renderer-agnostic; a `local_svg` rig profile and adapter own SVG-specific controls.
+
+## Deferred renderer — VTube Studio + Live2D
 
 Rationale:
 
@@ -37,9 +43,9 @@ JSON Schema handles structure and controlled vocabularies. TypeScript diagnostic
 
 Do not force temporal/domain rules into unreadable JSON Schema when ordinary tested code is clearer.
 
-## VTube API client decision
+## Deferred VTube API client decision
 
-The repository currently contains a small protocol client scaffold. Before completing M1-004, compare it with the community `VTubeStudioJS` library linked from the official VTube API documentation. Use the bounded spike in [`adr/0004-vtube-api-client-choice.md`](adr/0004-vtube-api-client-choice.md).
+The repository contains a small protocol client scaffold. Make no client choice unless ADR 0005's policy-approved installation criteria are met. ADR 0004 retains the future comparison criteria.
 
 Decision criteria:
 

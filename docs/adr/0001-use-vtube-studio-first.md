@@ -2,7 +2,7 @@
 
 ## Status
 
-Accepted for first milestone.
+Superseded for Milestone 1 by [ADR 0005](0005-local-svg-renderer.md). VTube Studio is deferred as a possible future adapter.
 
 ## Context
 
@@ -10,7 +10,7 @@ The project needs a fast way to render a controllable stylised avatar on Mac. Bu
 
 ## Decision
 
-Use VTube Studio with a Live2D avatar as the first renderer. Build an adapter that maps the project-level control schema to VTube Studio parameters and hotkeys.
+The historical decision was to use VTube Studio with a Live2D avatar as the first renderer and map project-level controls to its parameters and hotkeys. Organizational IT policy later made that installation unavailable; ADR 0005 changes the Milestone 1 renderer without invalidating this rationale for a future policy-approved adapter.
 
 ## Consequences
 

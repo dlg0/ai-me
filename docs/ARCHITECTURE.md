@@ -15,20 +15,20 @@ Mannerism runtime
         ↓
 Abstract controls
         ↓
-Rig profile + VTube adapter
+Rig profile + renderer adapter
         ↓
-VTube Studio input parameters / hotkeys
+Resolved renderer controls
         ↓
-VTube Studio model mappings
+Milestone 1 local SVG adapter
         ↓
-Live2D model parameters and animation
+Self-contained HTML/SVG player
         ↓
 Review capture / later OBS virtual camera
 ```
 
-A parallel asset pipeline produces the Live2D model, its VTube configuration, and the rig profile.
+The current `local_svg` profile and renderer are planned, not implemented. A parallel, deferred asset pipeline may later produce a Live2D model, VTube configuration, and profile.
 
-## Critical parameter distinction
+## Critical parameter distinction (VTube example, deferred)
 
 There are three different layers that must not be conflated:
 
@@ -36,7 +36,7 @@ There are three different layers that must not be conflated:
 2. **VTube Studio input/tracking parameter or hotkey** — for example `FaceAngleX` or a named hotkey.
 3. **Live2D model parameter** — a parameter inside the rig that VTube Studio maps from an input.
 
-The controller injects VTube Studio input parameters. The VTube model configuration maps those inputs to the actual Live2D rig. `rig-profile.v1` describes layer 1 → layer 2; the rigger owns layer 2 → layer 3.
+For a future VTube adapter, the controller would inject VTube Studio input parameters and model configuration would map them to the Live2D rig. In every adapter, `rig-profile.v1` describes the abstract-to-renderer boundary; renderer internals stay downstream.
 
 ## Components
 
@@ -70,7 +70,7 @@ Responsibilities:
 - schedule events against a monotonic clock;
 - convert semantic states to abstract target values;
 - interpolate/ease transitions;
-- refresh held VTube input values throughout their lifetime;
+- sample and resolve held values on deterministic fixed ticks;
 - debounce/queue gestures;
 - add carefully bounded micro-motion later;
 - handle cancellation, error, and neutral reset;
@@ -84,27 +84,24 @@ Persistent conversational stance should normally be expressed as eased parameter
 
 A versioned adapter manifest for one configured avatar:
 
-- expected VTube model ID/name and asset version when available;
-- abstract parameter → VTube input parameter ID;
+- renderer identity and asset version when available;
+- abstract parameter → renderer-specific control ID;
 - supported range and neutral value;
 - optional injection weight;
-- abstract gesture/expression → VTube hotkey selector (name or ID), resolved by preflight to a unique ID before playback.
+- abstract gesture/expression → renderer-specific selector.
 
 The profile is data, not executable animation logic.
 
-### 5. VTube adapter/session
+### 5. Local SVG adapter (Milestone 1; planned)
 
 Responsibilities:
 
-- connect to a configurable local WebSocket endpoint;
-- authenticate and persist the user-approved token outside Git;
-- inspect session/model/hotkey/input-parameter state;
-- send hotkey and injection requests;
-- correlate responses and surface API errors;
-- log sent requests and results;
-- close/release safely.
+- consume fixed-tick abstract runtime output through a `local_svg` rig profile;
+- render restrained abstract-avatar controls into self-contained HTML/SVG;
+- open via `file://` without network, external apps, or licensed model assets;
+- preserve full-duration disclosure, logs, deterministic replay, and neutral reset.
 
-VTube Studio requires held injected parameters to be resent periodically; the playback loop must therefore stream active values rather than send only state-start events.
+VTube Studio remains a deferred future adapter. Its scaffold is retained, but client choice and authenticated playback require ADR 0005's resumption criteria.
 
 ### 6. Avatar asset pipeline
 
@@ -149,15 +146,15 @@ Audio, transcript context, and formal Teams-bot participation remain separate la
 ## Milestone 1 data flow
 
 ```text
-example-animation-plan.json + rig-profile.json
+example-animation-plan.json + local_svg rig-profile.json
         ↓
 validate
         ↓
-preflight authenticated VTube session
+fixed-tick semantic resolution
         ↓
-resolve semantic events
+restrained renderer-control mapping
         ↓
-clocked hotkey + parameter playback
+self-contained HTML/SVG player
         ↓
 neutral reset/release
         ↓
@@ -165,6 +162,10 @@ run folder + optional recording
 ```
 
 ## Failure behaviour
+
+The local SVG path must fail visibly on plan/profile mismatch, invalid timing, unresolved controls, generation/write failure, or cancellation, and must preserve diagnostics and neutral reset.
+
+### Deferred VTube-specific failures
 
 The runtime must fail closed and visibly when:
 
@@ -177,8 +178,8 @@ The runtime must fail closed and visibly when:
 - event timing is invalid;
 - playback is cancelled or the connection closes.
 
-Every failure path must attempt neutral/reset when a connection remains available.
+Every future VTube failure path must attempt neutral/reset when a connection remains available.
 
 ## Renderer strategy
 
-VTube Studio is the first adapter because it provides a mature Live2D host and public control API on Mac. The project-level schema must remain usable by later Rive, browser, Unity, or other renderers.
+Local SVG is the Milestone 1 adapter because it is deterministic, dependency-free, and policy-compatible. The project-level schema remains usable by a future policy-approved VTube adapter, Rive, Unity, or other renderers.

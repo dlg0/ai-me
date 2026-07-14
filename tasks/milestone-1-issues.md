@@ -1,6 +1,28 @@
 # Milestone 1 Issue Breakdown
 
-`STATUS.md` is the source of completion truth. “Complete” below means implemented and covered by the root check; VTube-dependent issues additionally require manual evidence.
+> **Historical checklist below.** Beads epic `aime-6gm` is now the source of issue scope, acceptance criteria, status, and dependencies. `STATUS.md` remains the source of implementation truth. Run `bd show aime-6gm --children`, `bd ready`, and `bd blocked` rather than selecting work from the old checklist.
+
+## Current policy-safe critical path
+
+ADR 0005 replaces VTube Studio as the first Milestone 1 renderer because organizational IT policy blocks installation. Work proceeds in this dependency order:
+
+1. `M1-SVG-000` — record the local SVG decision and truthful status;
+2. `M1-SVG-001` — add a discriminated `local_svg` rig profile and first-party avatar vocabulary;
+3. `M1-SVG-002` — compile a deterministic fixed-tick abstract render script;
+4. `M1-SVG-003` — generate a self-contained offline HTML/SVG player;
+5. `M1-007` — tune a restrained, legible local SVG mannerism mapping;
+6. `M1-008` — persist durable successful, failed, and cancelled run artifacts;
+7. `M1-009` — review and replay the 20–45 second result at full and approximately 320px size.
+
+The local player must require no network, external application, or licensed model asset and must display AI-delegate disclosure for the full duration. The planner remains renderer-agnostic; the runtime owns time/easing/conflicts/reset; SVG-specific identifiers stay in the rig profile or adapter.
+
+## Deferred VTube track
+
+The VTube model, client decision, authenticated session/preflight, hotkey playback, and parameter injection Beads issues are deferred, not complete. Do not bypass organizational policy, fabricate model identifiers or tokens, or claim manual evidence. Resume only when ADR 0005's approval and usability criteria are met.
+
+## Pre-pivot scaffold checklist
+
+The sections below record the acceptance criteria that shaped the existing scaffold and deferred VTube issues. Their old status/next-work labels are not current instructions.
 
 ## M1-001 — Animation-plan validation CLI
 

@@ -47,7 +47,7 @@ Milestone 1 is offline review only, so safety mainly means:
 - boundary/deferral expressions must be part of the vocabulary;
 - the scaffold should not encourage hidden Teams use.
 
-The Milestone 1 `overlays` track is disclosure/capture metadata, not a claim that the VTube controller already draws text. The run manifest, recording title, or review notes must still identify the result as an offline AI-delegate prototype. Persistent in-frame disclosure is required before live/OBS use.
+The Milestone 1 `overlays` track remains disclosure/capture metadata rather than an avatar-control command. The local HTML/SVG player must draw the AI-delegate disclosure for the full duration, and the run manifest and review notes must also identify the result as an offline prototype. A future VTube/OBS path must independently prove that its live composition preserves the disclosure.
 
 ## Later live-mode requirements
 

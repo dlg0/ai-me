@@ -2,7 +2,7 @@
 
 ## Mission
 
-Build the smallest reviewable loop in which a semantic animation plan drives a stylised Live2D avatar through VTube Studio. The current target is offline review on David's Mac, not autonomous attendance in Microsoft Teams.
+Build the smallest reviewable loop in which a semantic animation plan drives a stylised avatar through a deterministic, first-party local SVG player. The current target is offline review on David's Mac, not autonomous attendance in Microsoft Teams. VTube Studio is a deferred future adapter because organizational IT policy blocks installation; do not bypass that policy.
 
 ## Read first
 
@@ -39,7 +39,7 @@ Do not add Teams attendance, synthetic voice, meeting transcription, RAG, or pho
 
 ## Current implementation boundary
 
-Schema validation, semantic diagnostics, dry-run playback, rig-profile validation, and mapping inspection are scaffold capabilities. The VTube client is not yet authenticated playback. Consult `STATUS.md`; do not infer completion from the presence of a source file.
+Schema validation, semantic diagnostics, dry-run playback, rig-profile validation, and mapping inspection are scaffold capabilities. The `local_svg` profile, deterministic render script, player, run artifacts, and visual review are not yet implemented. The VTube client remains a deferred, unauthenticated scaffold. Consult `STATUS.md`; do not infer completion from the presence of a source file.
 
 ## Pull-request standard
 
@@ -48,7 +48,7 @@ Each PR must state:
 1. the milestone issue advanced;
 2. the user-visible capability added;
 3. exact local test steps;
-4. assumptions about the rig/VTube setup;
+4. assumptions about the rig/renderer setup;
 5. remaining limitations and non-goals.
 
 <!-- BEGIN BEADS INTEGRATION v:1 profile:minimal hash:6cd5cc61 -->

@@ -5,7 +5,7 @@
 Review each run twice:
 
 1. full-size, with the event plan and log available;
-2. at approximately Teams participant-tile size, initially without reading the labels.
+2. at approximately 320px meeting-tile size, initially without reading the state labels.
 
 Record both categorical scores and concrete changes. Prefer observations such as “thinking head tilt begins too abruptly” over “feels weird”.
 
@@ -36,6 +36,7 @@ Use 1–5 for each dimension.
 - [ ] The animation returns to neutral at the end.
 - [ ] A second replay begins from the same neutral state.
 - [ ] The run/recording and review notes explicitly identify this as an offline AI-delegate prototype.
+- [ ] The in-frame `AI delegate` disclosure remains readable for the full playback.
 
 ## Top-change format
 
@@ -43,9 +44,9 @@ For each review, record at most five priority changes:
 
 | Priority | Observation | Likely layer | Proposed change | Evidence |
 |---|---|---|---|---|
-| 1 |  | plan / runtime / rig / VTS / capture |  | timestamp/screenshot |
+| 1 |  | plan / runtime / rig / renderer / capture |  | timestamp/screenshot |
 
-This forces the team to identify whether a defect belongs in the planner, deterministic runtime, rig profile, actual Live2D rig, or capture layer.
+This forces the team to identify whether a defect belongs in the planner, deterministic runtime, rig profile, renderer, or capture layer. A future Live2D run may further distinguish its actual rig and VTube configuration.
 
 ## Stop conditions
 
@@ -60,4 +61,4 @@ Do not proceed to voice/live meeting work when any of these remain true:
 
 ## Additional live-output gate
 
-Before OBS/Teams use, add a separate check that a persistent in-frame `AI delegate` label remains readable at meeting-tile size. That is not a VTube-controller rendering requirement for Milestone 1.
+Before OBS/Teams use, repeat the disclosure check in the actual live-output composition; passing it in the local Milestone 1 player is necessary but not evidence that a later capture pipeline preserves it.

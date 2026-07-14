@@ -1,5 +1,7 @@
 # Final Handoff Review
 
+> Historical note: this review records the pre-pivot scaffold handoff. ADR 0005 and `STATUS.md` now define a policy-safe local SVG critical path; the VTube recommendation below is deferred because organizational IT blocks installation.
+
 **Review date:** 14 July 2026
 **Review environment:** Node.js 22.16.0, npm 10.9.2, clean source-only copy
 

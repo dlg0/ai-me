@@ -1,12 +1,12 @@
-# Milestone 1 — Offline Reviewable Animation via VTube Studio
+# Milestone 1 — Offline Reviewable Animation via Local SVG
 
 ## Delivery statement
 
 Build the smallest end-to-end loop that demonstrates the project's novel element:
 
-> A semantic plan produced by a human or AI agent drives a stylised avatar through VTube Studio, and the resulting behaviour can be replayed and reviewed.
+> A semantic plan produced by a human or AI agent drives a stylised avatar in a self-contained local HTML/SVG player, and the resulting behaviour can be replayed and reviewed.
 
-An integrated LLM API call is not required for this milestone. A coding/chat agent may generate the JSON plan directly. The milestone ends when the plan can actually animate a loaded model—not when a mapping is merely printed.
+An integrated LLM API call is not required. The milestone ends when a 20–45 second result is reviewable at approximately 320 px—not when a mapping is merely printed. The SVG player and renderer are planned, not implemented.
 
 ## Why this comes first
 
@@ -16,12 +16,10 @@ This isolates the expressive-control problem from Teams, transcription, voice cl
 
 - macOS development machine;
 - Node.js 22 or later;
-- VTube Studio with Plugin API access enabled;
-- a loaded Live2D model;
 - `animation-plan.v1` JSON;
-- a matching `rig-profile.v1` file.
+- a matching `local_svg` `rig-profile.v1` file.
 
-The runtime may use a generic test model. A David-specific rig is a parallel dependency, not a prerequisite for controller development.
+The path must require no network, external application, or licensed model asset. VTube/Live2D is a deferred optional adapter (ADR 0005), not a prerequisite.
 
 ## Inputs
 
@@ -37,7 +35,7 @@ Renderer-agnostic semantic events: states, gestures, optional speech intent, and
 
 ### Rig profile
 
-Mapping from abstract controls such as `head.angle.x` or `defer_to_human` to VTube Studio input parameters and hotkeys.
+Mapping from abstract controls such as `head.angle.x` or `defer_to_human` to local SVG adapter controls. Renderer IDs do not enter the semantic plan.
 
 ## Outputs
 
@@ -50,10 +48,10 @@ runs/<run-id>/
 ├── rig-profile.json
 ├── renderer-log.jsonl
 ├── review-notes.md
-└── recording.mp4        # manual/optional until capture is automated
+└── player.html          # self-contained file:// review player
 ```
 
-The log must distinguish planned events, resolved commands, commands actually sent, responses/errors, and final reset/release.
+The log must distinguish planned events, fixed-tick resolved controls, rendered state/errors, and final reset. The player displays AI-delegate disclosure for its full duration.
 
 ## Target scene
 
@@ -95,48 +93,39 @@ All commands pass. The mapping command clearly states that it does not drive VTu
 - rig ranges and neutral values are checked;
 - plan `targetRig` must match the selected rig profile.
 
-### VTube preflight
-
-- host/port are configurable;
-- plugin API disabled/unreachable gives an actionable error;
-- token is requested once, persisted locally outside version control, and reused;
-- current session authentication is verified;
-- a model is loaded;
-- configured hotkeys exist or fail preflight;
-- configured input parameter IDs exist or fail preflight.
-
 ### Playback
 
-- events are scheduled against a monotonic clock;
-- configured hotkeys fire at the intended times;
+- the render script samples a documented fixed tick deterministically;
+- configured SVG controls resolve through the rig profile;
 - parameter values ease rather than jump unless explicitly requested;
-- controlled parameters are refreshed frequently enough that VTube Studio does not release them during a state;
 - cancellation stops future events;
-- end-of-plan and error paths force neutral/reset and release control;
+- end-of-plan and error paths force neutral/reset;
 - no event is silently dropped.
 
 ### Review
 
 - a reviewer can watch a 20–45 second result and inspect the source plan and command log;
-- the six target states are distinguishable at Teams-tile size;
+- the six target states are distinguishable at approximately 320 px;
 - replay is sufficiently deterministic to compare iterations;
 - review notes identify at least the top five behavioural or rig changes;
 - the run/recording is explicitly labelled as an offline AI-delegate prototype in its manifest, title, or review notes.
 
-The `overlays` track is preserved as capture intent in Milestone 1; the VTube controller is not required to draw it. A persistent in-frame disclosure overlay becomes mandatory when OBS/live output is introduced.
+The local player renders a full-duration AI-delegate disclosure from review metadata. It remains visible throughout playback.
 
 ## Implementation sequence
 
 1. Verify the scaffold with `npm run check`.
-2. Implement VTube authentication/session persistence and preflight.
-3. Resolve hotkey names/IDs and input parameters against the loaded model.
-4. Implement clocked hotkey playback.
-5. Implement parameter interpolation and repeated injection.
-6. Add cancellation, reset, and error-safe release.
-7. Add durable run artefacts and JSONL logs.
-8. Run against a generic test rig.
-9. Run against the David-specific rig when available.
-10. Record, review, and revise the vocabulary/mappings.
+2. Add and validate a `local_svg` rig profile.
+3. Implement a deterministic fixed-tick abstract render script.
+4. Generate a dependency-free, self-contained `file://` HTML/SVG player.
+5. Add restrained mappings, easing, cancellation, and neutral reset.
+6. Add durable run artifacts and JSONL logs.
+7. Review/replay the 20–45 second reference scene at approximately 320 px.
+8. Revise the vocabulary and mappings from recorded review evidence.
+
+## Deferred optional VTube adapter
+
+The existing VTube scaffold and detailed setup/asset documents remain reference material. Do not install around organizational policy or claim VTube evidence. Resume only under ADR 0005's approval and usability criteria.
 
 ## Non-goals
 

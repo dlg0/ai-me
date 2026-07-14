@@ -2,7 +2,7 @@
 
 ## Mission
 
-Complete the first offline VTube Studio playback loop for a disclosed, stylised AI delegate.
+Complete the first offline local SVG playback loop for a disclosed, stylised AI delegate.
 
 ## Source of truth
 
@@ -32,9 +32,7 @@ Do not begin implementation until the baseline passes. Do not weaken tests or sc
 
 ## Recommended next assignment
 
-**M1-004 — authenticated VTube session and preflight.**
-
-Before coding, complete the narrow spike in `docs/adr/0004-vtube-api-client-choice.md`: extend the thin client or adopt `VTubeStudioJS`. Choose one.
+Implement ADR 0005's current critical path: `local_svg` rig profile → deterministic fixed-tick abstract render script → self-contained `file://` HTML/SVG player → restrained mapping → durable artifacts → review/replay. None of these SVG capabilities has visual completion evidence yet.
 
 ## Parallel asset assignment
 

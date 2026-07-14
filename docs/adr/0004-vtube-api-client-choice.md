@@ -2,7 +2,7 @@
 
 ## Status
 
-Proposed. Resolve as the first step of M1-004.
+Deferred by [ADR 0005](0005-local-svg-renderer.md). Make no client choice without a policy-approved, usable VTube Studio installation.
 
 ## Context
 
@@ -56,4 +56,4 @@ Use a generic Live2D test model. Record code size, wrapper complexity, observed 
 
 ## Decision
 
-Pending. Choose exactly one production client and remove or clearly demote the other. Update `STATUS.md`, `docs/TECH_CHOICES.md`, package dependencies, and tests in the same change.
+Deferred. If the VTube adapter resumes under ADR 0005's criteria, choose exactly one production client using evidence from the approved installation; until then the existing thin client remains a non-production scaffold.

@@ -135,7 +135,7 @@ This is not an audio asset. Milestone 1 uses it to define a speech-ready behavio
 }
 ```
 
-Overlays belong to the review/OBS layer. They must not be misrepresented as VTube model controls. In Milestone 1 the controller preserves and logs this intent but does not render overlay pixels; a later capture/OBS layer owns that output.
+Overlays belong to the review/capture layer and must not be misrepresented as avatar controls. The Milestone 1 local player renders the disclosure overlay for the full duration while keeping it out of the avatar-control mapping. A future VTube adapter may continue to preserve this event as capture intent for OBS or another output layer.
 
 ## State vocabulary
 
