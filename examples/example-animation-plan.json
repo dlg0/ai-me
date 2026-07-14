@@ -1,0 +1,206 @@
+{
+  "schemaVersion": "animation-plan.v1",
+  "title": "Qualified answer with visible deferral",
+  "description": "A first review clip showing listening, thinking, agreement, uncertainty, speaking, and deferral.",
+  "durationMs": 28000,
+  "safetyMode": "offline_review_only",
+  "targetRig": "david_delegate_live2d_v0",
+  "plannerNotes": "Keep expression restrained and professional. The delegate should visibly defer the final decision to David.",
+  "tracks": {
+    "states": [
+      {
+        "id": "state-001",
+        "type": "state",
+        "startMs": 0,
+        "durationMs": 4500,
+        "state": "listening",
+        "intensity": 0.35,
+        "attention": "current_speaker",
+        "affect": {
+          "warmth": 0.35,
+          "confidence": 0.5,
+          "uncertainty": 0.1,
+          "energy": 0.25
+        },
+        "reason": "Establish attentive presence."
+      },
+      {
+        "id": "state-002",
+        "type": "state",
+        "startMs": 4500,
+        "durationMs": 5200,
+        "state": "thinking",
+        "intensity": 0.45,
+        "attention": "down_left",
+        "affect": {
+          "warmth": 0.25,
+          "confidence": 0.48,
+          "uncertainty": 0.38,
+          "energy": 0.22
+        },
+        "reason": "Show processing before answering."
+      },
+      {
+        "id": "state-003",
+        "type": "state",
+        "startMs": 9700,
+        "durationMs": 2500,
+        "state": "agreeing",
+        "intensity": 0.35,
+        "attention": "camera",
+        "affect": {
+          "warmth": 0.48,
+          "confidence": 0.62,
+          "uncertainty": 0.22,
+          "energy": 0.32
+        },
+        "reason": "Acknowledge that the question is reasonable."
+      },
+      {
+        "id": "state-004",
+        "type": "state",
+        "startMs": 12200,
+        "durationMs": 3300,
+        "state": "uncertain",
+        "intensity": 0.42,
+        "attention": "camera",
+        "affect": {
+          "warmth": 0.34,
+          "confidence": 0.55,
+          "uncertainty": 0.5,
+          "energy": 0.27
+        },
+        "reason": "Signal that the answer is qualified."
+      },
+      {
+        "id": "state-005",
+        "type": "state",
+        "startMs": 15500,
+        "durationMs": 8500,
+        "state": "speaking",
+        "intensity": 0.45,
+        "attention": "camera",
+        "affect": {
+          "warmth": 0.4,
+          "confidence": 0.62,
+          "uncertainty": 0.32,
+          "energy": 0.38
+        },
+        "reason": "Deliver a cautious answer."
+      },
+      {
+        "id": "state-006",
+        "type": "state",
+        "startMs": 24000,
+        "durationMs": 3200,
+        "state": "deferring",
+        "intensity": 0.55,
+        "attention": "camera",
+        "affect": {
+          "warmth": 0.35,
+          "confidence": 0.7,
+          "uncertainty": 0.25,
+          "energy": 0.28
+        },
+        "reason": "Make the decision boundary clear."
+      },
+      {
+        "id": "state-007",
+        "type": "state",
+        "startMs": 27200,
+        "durationMs": 800,
+        "state": "reset_neutral",
+        "intensity": 1,
+        "attention": "camera",
+        "reason": "Return to neutral."
+      }
+    ],
+    "gestures": [
+      {
+        "id": "gesture-001",
+        "type": "gesture",
+        "startMs": 1800,
+        "durationMs": 450,
+        "gesture": "micro_nod",
+        "intensity": 0.25,
+        "reason": "Subtle listening acknowledgement."
+      },
+      {
+        "id": "gesture-002",
+        "type": "gesture",
+        "startMs": 5300,
+        "durationMs": 900,
+        "gesture": "slow_blink",
+        "intensity": 0.3,
+        "reason": "Thinking pause."
+      },
+      {
+        "id": "gesture-003",
+        "type": "gesture",
+        "startMs": 6500,
+        "durationMs": 1200,
+        "gesture": "head_tilt_left",
+        "intensity": 0.32,
+        "reason": "Processing uncertainty."
+      },
+      {
+        "id": "gesture-004",
+        "type": "gesture",
+        "startMs": 10200,
+        "durationMs": 700,
+        "gesture": "small_nod",
+        "intensity": 0.35,
+        "reason": "Mild agreement."
+      },
+      {
+        "id": "gesture-005",
+        "type": "gesture",
+        "startMs": 13000,
+        "durationMs": 900,
+        "gesture": "caveat_expression",
+        "intensity": 0.45,
+        "reason": "Visible caveat before answer."
+      },
+      {
+        "id": "gesture-006",
+        "type": "gesture",
+        "startMs": 19000,
+        "durationMs": 700,
+        "gesture": "brow_raise",
+        "intensity": 0.35,
+        "reason": "Emphasise uncertainty."
+      }
+    ],
+    "speech": [
+      {
+        "id": "speech-001",
+        "type": "speech",
+        "startMs": 15500,
+        "text": "My read is that this is probably safe as a direction, but David should confirm the commitment before anyone treats it as agreed.",
+        "speechAct": "qualified_answer",
+        "confidence": 0.62,
+        "emphasis": [
+          {
+            "text": "probably safe",
+            "gesture": "caveat_expression"
+          },
+          {
+            "text": "David should confirm",
+            "gesture": "defer_to_human"
+          }
+        ],
+        "durationMs": 7600
+      }
+    ],
+    "overlays": [
+      {
+        "id": "overlay-001",
+        "type": "overlay",
+        "startMs": 0,
+        "durationMs": 28000,
+        "text": "David's AI Delegate — offline animation review",
+        "position": "lower_third"
+      }
+    ]
+  }
+}

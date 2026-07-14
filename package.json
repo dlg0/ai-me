@@ -1,0 +1,21 @@
+{
+  "name": "ai-delegate-avatar",
+  "version": "0.0.1",
+  "private": true,
+  "description": "Agent-controlled, disclosed AI delegate avatar research scaffold",
+  "workspaces": [
+    "packages/*"
+  ],
+  "engines": {
+    "node": ">=22"
+  },
+  "scripts": {
+    "build": "npm run build --workspace @ai-delegate-avatar/controller",
+    "test": "npm run test --workspace @ai-delegate-avatar/controller",
+    "validate:example": "npm run validate --workspace @ai-delegate-avatar/controller -- ../../examples/example-animation-plan.json",
+    "validate:rig": "npm run validate:rig --workspace @ai-delegate-avatar/controller -- ../../examples/rig-profile.example.json",
+    "demo:dry": "npm run dry-run --workspace @ai-delegate-avatar/controller -- ../../examples/example-animation-plan.json",
+    "demo:mapping": "npm run inspect:mapping --workspace @ai-delegate-avatar/controller -- ../../examples/example-animation-plan.json ../../examples/rig-profile.example.json",
+    "check": "npm run build && npm run test && npm run validate:example && npm run validate:rig"
+  }
+}

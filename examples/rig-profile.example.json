@@ -1,0 +1,49 @@
+{
+  "schemaVersion": "rig-profile.v1",
+  "rigId": "david_delegate_live2d_v0",
+  "renderer": "vtube_studio",
+  "parameters": {
+    "head.angle.x": {
+      "vtsInputParameter": "FaceAngleX",
+      "min": -30,
+      "max": 30,
+      "neutral": 0,
+      "weight": 1
+    },
+    "head.angle.y": {
+      "vtsInputParameter": "FaceAngleY",
+      "min": -30,
+      "max": 30,
+      "neutral": 0,
+      "weight": 1
+    },
+    "head.angle.z": {
+      "vtsInputParameter": "FaceAngleZ",
+      "min": -30,
+      "max": 30,
+      "neutral": 0,
+      "weight": 1
+    }
+  },
+  "hotkeys": {
+    "neutral": "neutral",
+    "mild_smile": "mild_smile",
+    "thinking": "thinking",
+    "uncertain": "uncertain",
+    "speaking_ready": "speaking_ready",
+    "boundary": "boundary",
+    "defer_to_human": "defer_to_human",
+    "reset_neutral": "reset_neutral",
+    "micro_nod": "micro_nod",
+    "small_nod": "small_nod",
+    "slow_blink": "slow_blink",
+    "head_tilt_left": "head_tilt_left",
+    "head_tilt_right": "head_tilt_right",
+    "brow_raise": "brow_raise",
+    "brow_furrow": "brow_furrow",
+    "glance_aside": "glance_aside",
+    "glance_down": "glance_down",
+    "half_smile": "half_smile",
+    "caveat_expression": "caveat_expression"
+  }
+}
