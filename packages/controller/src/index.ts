@@ -6,5 +6,6 @@ export * from "./runtime/mapping.js";
 export * from "./runtime/timeline.js";
 export * from "./runtime/render-script.js";
 export * from "./local-svg/mapping.js";
+export * from "./local-svg/player.js";
 export * from "./vtube/client.js";
 export * from "./vtube/mapping.js";

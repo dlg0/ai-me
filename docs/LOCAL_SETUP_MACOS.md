@@ -21,13 +21,28 @@ npm run check
 npm run demo:dry
 npm run demo:mapping
 npm run --silent demo:render-script > /tmp/render-script.jsonl
+npm run demo:player
 ```
 
-The demo commands require no VTube installation and make no network calls. `demo:render-script` writes deterministic renderer-neutral JSONL; it does not render an avatar. The planned player command will generate a self-contained HTML/SVG file for `file://` review; it is not implemented yet.
+The demo commands require no VTube installation and make no network calls. `demo:render-script` writes deterministic renderer-neutral JSONL. `demo:player` generates `runs/local-svg-player.html` from the validated reference plan and rig profile.
 
-## Current local SVG review path (planned)
+## Current local SVG review path
 
-The critical path is `local_svg` rig profile → deterministic fixed-tick abstract render script → self-contained `file://` HTML/SVG player → restrained mapping → durable artifacts → review/replay. It will require no network, external application, or licensed model assets, show AI-delegate disclosure for the full duration, and target a 20–45 second review at approximately 320 px. Do not treat this description as implementation or visual evidence.
+The generator compiles and resolves every fixed-tick frame ahead of time. The browser only selects precomputed frames and applies their complete control maps. It requires no network, external application, or licensed model asset and keeps the plan's AI-delegate disclosure visible.
+
+To perform a local visual check:
+
+1. Run `npm run demo:player` and open the printed absolute path in a modern browser using `file://`.
+2. Confirm the three-second countdown, disclosure, offline/rig badge, state, timer, and playback status remain visible at full size and at approximately 320 px width.
+3. Exercise Pause/Resume during countdown and playback, hide/show the page, and Restart mid-playback and after completion.
+4. Confirm restart visibly returns to neutral before counting down, completion returns to the same neutral, and the listening, thinking, agreement, caveat, speaking-ready, and deferral segments are distinguishable.
+5. With the network disabled or browser developer tools open, confirm there are no resource or network requests. Record any visual/taste defects as pending tuning; do not treat generation tests as browser evidence.
+
+### Manual browser evidence — 14 July 2026
+
+The generated file was opened directly from `file://` in Google Chrome 150.0.7871.115 on macOS. The initial Ready state was neutral with disclosure visible and no playback before Start. Start/countdown, pause/resume during countdown, restart, full 28-second completion, and exact-looking neutral restoration were exercised without page errors. The player reported semantic state names, retained readable disclosure/status/timing at a constrained 320px width, and recorded no resource requests in the Performance API. Restart from completion synchronously restored neutral before a new countdown. Screenshots were used for local inspection but were not committed as product evidence.
+
+Result: **player mechanics pass in Chrome**. Safari remains unverified. The top prototype badge is small but readable at 320px. This check does not complete M1-007 taste tuning or the M1-009 comparable review/replay.
 
 ## Deferred optional VTube Studio setup
 

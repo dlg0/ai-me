@@ -6,7 +6,7 @@ Build the smallest end-to-end loop that demonstrates the project's novel element
 
 > A semantic plan produced by a human or AI agent drives a stylised avatar in a self-contained local HTML/SVG player, and the resulting behaviour can be replayed and reviewed.
 
-An integrated LLM API call is not required. The milestone ends when a 20–45 second result is reviewable at approximately 320 px—not when a mapping is merely printed. The SVG player and renderer are planned, not implemented.
+An integrated LLM API call is not required. The milestone ends when a 20–45 second result is reviewable at approximately 320 px—not when a mapping is merely printed. The SVG player generator and functional Chrome check are complete; taste tuning and the milestone review/replay remain pending.
 
 ## Why this comes first
 
@@ -81,9 +81,11 @@ npm run check
 npm run demo:dry
 npm run demo:mapping
 npm run --silent demo:render-script > /tmp/render-script.jsonl
+npm run demo:player
 ```
 
 All commands pass. The mapping command clearly states that it does not drive VTube Studio.
+The player command writes the ignored `runs/local-svg-player.html`, which opens directly through `file://` without external resources.
 
 ### Plan and rig validation
 

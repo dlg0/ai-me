@@ -16,7 +16,7 @@ Last clean-check review: **14 July 2026**. See `HANDOFF_REVIEW.md`.
 | Semantic-to-rig mapping inspection | Implemented scaffold | `npm run demo:mapping`; no VTube commands are sent |
 | `local_svg` rig profile + bounded control mapping | Implemented | Discriminated profile union, first-party fixture, and `npm run demo:mapping` |
 | Deterministic fixed-tick abstract render script | Implemented | `npm run demo:render-script`; pure `render-script.v1` JSONL compiler, no visual output yet |
-| Self-contained `file://` HTML/SVG player | Planned, not implemented | No player or manual visual evidence yet |
+| Self-contained `file://` HTML/SVG player | Implemented; Chrome manual check passed | `npm run demo:player`; functional review at full and ~320px, taste tuning remains |
 | Restrained SVG mapping + durable review artifacts | Planned, not implemented | Target is a 20–45 second review at ~320 px |
 | VTube WebSocket connection | Client scaffold only | API-state request exists; no production authentication/session wrapper |
 | VTube authentication/token persistence | Deferred | IT policy blocks installation; future adapter only |
@@ -29,7 +29,7 @@ Last clean-check review: **14 July 2026**. See `HANDOFF_REVIEW.md`.
 
 ## Recommended next issue
 
-Implement the self-contained `file://` HTML/SVG player, restrained mappings, durable artifacts, and review/replay. The abstract render script and local SVG rig contract are implemented; visual playback is not.
+Implement restrained taste tuning, durable artifacts, and the comparable review/replay. Chrome verified the local player mechanics and neutral reset; this is not yet the milestone taste review.
 
 ## External dependency
 
