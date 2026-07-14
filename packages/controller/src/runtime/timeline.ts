@@ -10,11 +10,16 @@ export function flattenTimeline(plan: AnimationPlan): TimelineEvent[] {
 
   return events.sort((a, b) => {
     if (a.startMs !== b.startMs) return a.startMs - b.startMs;
-    return typePriority(a.type) - typePriority(b.type);
+    return compareEventIdentity(a, b);
   });
 }
 
-function typePriority(type: string): number {
+/** Stable ordering used by timelines and render-script markers. */
+export function compareEventIdentity(a: TimelineEvent, b: TimelineEvent): number {
+  return eventTypePriority(a.type) - eventTypePriority(b.type) || (a.id < b.id ? -1 : a.id > b.id ? 1 : 0);
+}
+
+export function eventTypePriority(type: string): number {
   switch (type) {
     case "overlay": return 0;
     case "state": return 1;

@@ -9,6 +9,7 @@ npm install
 npm run check
 npm run demo:dry
 npm run demo:mapping
+npm run --silent demo:render-script > /tmp/render-script.jsonl
 ```
 
 ## Optional VTube connectivity probe
@@ -30,14 +31,14 @@ The probe only checks the WebSocket/API state. It does not authenticate or move 
 - ordered dry-run timeline;
 - discriminated local SVG/VTube rig-profile validation;
 - renderer-neutral semantic controls and local SVG/VTube mapping inspection;
+- pure deterministic `render-script.v1` JSONL compilation with fixed-tick easing, cancellation reset, and terminal invariants;
 - thin VTube protocol client scaffold.
 
 ## Not implemented
 
 - persisted VTube authentication session;
 - timed playback scheduler;
-- easing/interpolation loop;
-- repeated parameter injection;
+- local SVG/HTML player and resolved playback loop;
 - hotkey/parameter preflight against the loaded model;
 - run artefact folders;
 - recording, TTS, Teams, or LLM API integration.

@@ -208,6 +208,16 @@ Errors block playback. Warnings remain visible and must be logged with the run.
 
 The runtime may soften or suppress requests that violate style/safety limits, but it must log the decision. It must never silently reinterpret a plan into materially different behaviour.
 
+## `render-script.v1`
+
+The pure compiler turns a validated plan into newline-delimited, renderer-neutral records. It never reads a rig profile and therefore contains abstract parameter and pose names only. The later adapter is solely responsible for resolving those names to SVG, VTube Studio, or other renderer controls.
+
+The stream begins with a header, preserves semantic start/end markers (including disclosure overlay and speech text), emits fixed-tick frames, and always ends with explicit `end`, exact-neutral `reset`, and `release` records. JSONL serialization has one JSON object per line and a trailing newline. Defaults are 50 ms ticks, a 450 ms transition, smoothstep `t*t*(3-2*t)`, and four decimal places. `transitionMs` must be a multiple of `tickMs`. Every frame time is exactly its integer tick index times `tickMs`; an off-grid plan duration has no synthetic terminal frame, while semantic markers and terminal records retain their exact times. Maps and event IDs have stable lexical ordering; values are clamped, quantized, and negative zero becomes zero.
+
+State parameters transition from the value sampled at the boundary to the new state's complete target; omitted parameters mean neutral. Gaps ease to neutral and then hold it. State and gesture poses attack and release inside their event windows. Same-name state/gesture contributions coalesce to one abstract pose using maximum weight and sorted `sourceEventIds`; overlapping same-name gestures are still rejected. Unique poses are listed with every state contribution before every gesture contribution, then by `startMs` and event ID within each class. The adapter applies unique pose names in that order. After rig-profile resolution, a later pose contribution wins when differently named poses target the same renderer control; only the adapter can detect that collision. Adjacent same-name gesture windows and overlaps of different names are valid.
+
+At a shared timestamp, event ends precede starts, starts precede the frame, and marker ties use event-type priority then event ID. Cancel/error compilation truncates the requested stop down to the tick grid, excludes future markers, records both requested and effective stop, and emits a fixed-transition reset ramp before the terminal records.
+
 ## Versioning
 
 Changes that invalidate existing plans require a new schema version. Additive runtime mappings or rig profiles do not require an animation-plan version change. Keep example plans as regression fixtures whenever the schema evolves.

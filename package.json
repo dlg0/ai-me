@@ -16,6 +16,7 @@
     "validate:rig": "npm run validate:rig --workspace @ai-delegate-avatar/controller -- ../../examples/rig-profile.local-svg.json",
     "demo:dry": "npm run dry-run --workspace @ai-delegate-avatar/controller -- ../../examples/example-animation-plan.json",
     "demo:mapping": "npm run inspect:mapping --workspace @ai-delegate-avatar/controller -- ../../examples/example-animation-plan.json ../../examples/rig-profile.local-svg.json",
+    "demo:render-script": "npm run compile:render-script --workspace @ai-delegate-avatar/controller -- ../../examples/example-animation-plan.json",
     "check": "npm run build && npm run test && npm run validate:example && npm run validate:rig"
   }
 }

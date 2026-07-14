@@ -13,6 +13,7 @@
     "validate:rig": "tsx src/cli/validate-rig.ts",
     "dry-run": "tsx src/cli/dry-run.ts",
     "inspect:mapping": "tsx src/cli/inspect-mapping.ts",
+    "compile:render-script": "tsx src/cli/compile-render-script.ts",
     "probe:vtube": "tsx src/cli/probe-vtube.ts"
   },
   "dependencies": {

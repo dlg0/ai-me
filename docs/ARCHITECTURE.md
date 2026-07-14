@@ -13,7 +13,7 @@ Schema validation + semantic diagnostics
         ↓
 Mannerism runtime
         ↓
-Abstract controls
+render-script.v1 (fixed-tick abstract controls + semantic markers)
         ↓
 Rig profile + renderer adapter
         ↓
@@ -78,6 +78,8 @@ Responsibilities:
 
 The runtime owns taste and temporal coherence. The planner expresses intent.
 
+Its pure compiler has no clock, filesystem, randomness, rig profile, or renderer dependency. It samples at 20 fps by default, applies deterministic smoothstep transitions and neutral gap handling, and quantizes abstract values to four decimals. Same-name gesture overlap is rejected at this layer; differently named poses remain ordered contributions because only the adapter can know whether their renderer mappings collide. Completed, cancelled, and recoverable-error streams all terminate with explicit outcome, exact-neutral reset, and release records. Cancellation/error stop times truncate to the tick grid and add a deterministic reset ramp.
+
 Persistent conversational stance should normally be expressed as eased parameter targets. Hotkeys are best reserved for bounded one-shot gestures/animations. If an early rig uses toggle expressions for state stance, the adapter must know their lifecycle, deactivate them on transition, and prove that reset is idempotent; blindly firing toggle hotkeys is not acceptable playback.
 
 ### 4. Rig profile
@@ -97,6 +99,7 @@ The profile is data, not executable animation logic.
 Responsibilities:
 
 - consume fixed-tick abstract runtime output through a `local_svg` rig profile;
+- consume compiler-coalesced unique abstract poses in listed state-before-gesture order, then resolve them through the profile; later poses win when different names resolve to the same renderer control;
 - render restrained abstract-avatar controls into self-contained HTML/SVG;
 - open via `file://` without network, external apps, or licensed model assets;
 - preserve full-duration disclosure, logs, deterministic replay, and neutral reset.

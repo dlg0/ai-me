@@ -36,6 +36,7 @@ Implemented now:
 - rig-profile validation;
 - a discriminated `local_svg`/VTube rig-profile contract;
 - a first-party local SVG control profile and semantic-to-rig mapping inspection;
+- deterministic renderer-neutral `render-script.v1` JSONL compilation;
 - thin VTube WebSocket protocol client scaffold.
 
 Not implemented yet:
@@ -59,6 +60,7 @@ npm install
 npm run check
 npm run demo:dry
 npm run demo:mapping
+npm run --silent demo:render-script > /tmp/render-script.jsonl
 ```
 
 `npm run demo:mapping` is inspection only. It opens no WebSocket and sends nothing to VTube Studio.

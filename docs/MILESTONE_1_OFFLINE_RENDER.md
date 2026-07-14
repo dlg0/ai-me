@@ -80,6 +80,7 @@ npm install
 npm run check
 npm run demo:dry
 npm run demo:mapping
+npm run --silent demo:render-script > /tmp/render-script.jsonl
 ```
 
 All commands pass. The mapping command clearly states that it does not drive VTube Studio.

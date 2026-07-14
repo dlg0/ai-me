@@ -20,9 +20,10 @@ npm install
 npm run check
 npm run demo:dry
 npm run demo:mapping
+npm run --silent demo:render-script > /tmp/render-script.jsonl
 ```
 
-The last two commands require no VTube installation and make no network calls. The planned Milestone 1 command will generate a self-contained HTML/SVG player for `file://` review; it is not implemented yet.
+The demo commands require no VTube installation and make no network calls. `demo:render-script` writes deterministic renderer-neutral JSONL; it does not render an avatar. The planned player command will generate a self-contained HTML/SVG file for `file://` review; it is not implemented yet.
 
 ## Current local SVG review path (planned)
 
