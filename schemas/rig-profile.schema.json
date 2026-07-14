@@ -2,52 +2,133 @@
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://schemas.local/ai-delegate-avatar/rig-profile.v1.schema.json",
   "title": "Rig Profile v1",
-  "type": "object",
-  "additionalProperties": false,
-  "required": ["schemaVersion", "rigId", "renderer", "parameters", "hotkeys"],
-  "properties": {
-    "schemaVersion": {"const": "rig-profile.v1"},
-    "rigId": {"type": "string", "minLength": 1},
-    "renderer": {"const": "vtube_studio"},
-    "model": {
+  "$defs": {
+    "vtubeParameter": {
       "type": "object",
       "additionalProperties": false,
+      "required": ["vtsInputParameter", "min", "max", "neutral"],
       "properties": {
-        "expectedModelId": {"type": "string", "minLength": 1},
-        "expectedModelName": {"type": "string", "minLength": 1},
-        "assetVersion": {"type": "string", "minLength": 1}
-      },
-      "anyOf": [
-        {
-          "required": ["expectedModelId"],
-          "properties": {"expectedModelId": {"type": "string", "minLength": 1}}
-        },
-        {
-          "required": ["expectedModelName"],
-          "properties": {"expectedModelName": {"type": "string", "minLength": 1}}
-        }
-      ]
+        "vtsInputParameter": {"type": "string", "minLength": 1},
+        "min": {"type": "number"},
+        "max": {"type": "number"},
+        "neutral": {"type": "number"},
+        "weight": {"type": "number", "minimum": 0, "maximum": 1}
+      }
     },
-    "parameters": {
+    "svgControl": {
       "type": "object",
-      "propertyNames": {"pattern": "^[a-z][a-z0-9]*(\\.[a-z0-9]+)*$"},
-      "additionalProperties": {
-        "type": "object",
-        "additionalProperties": false,
-        "required": ["vtsInputParameter", "min", "max", "neutral"],
-        "properties": {
-          "vtsInputParameter": {"type": "string", "minLength": 1},
-          "min": {"type": "number"},
-          "max": {"type": "number"},
-          "neutral": {"type": "number"},
-          "weight": {"type": "number", "minimum": 0, "maximum": 1}
+      "additionalProperties": false,
+      "required": ["svgControlId", "min", "max", "neutral"],
+      "properties": {
+        "svgControlId": {"type": "string", "minLength": 1},
+        "min": {"type": "number"},
+        "max": {"type": "number"},
+        "neutral": {"type": "number"}
+      }
+    },
+    "vtubeProfile": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["schemaVersion", "rigId", "renderer", "parameters", "hotkeys"],
+      "properties": {
+        "schemaVersion": {"const": "rig-profile.v1"},
+        "rigId": {"type": "string", "minLength": 1},
+        "renderer": {"const": "vtube_studio"},
+        "model": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "expectedModelId": {"type": "string", "minLength": 1},
+            "expectedModelName": {"type": "string", "minLength": 1},
+            "assetVersion": {"type": "string", "minLength": 1}
+          },
+          "anyOf": [
+            {
+              "required": ["expectedModelId"],
+              "properties": {
+                "expectedModelId": {"type": "string", "minLength": 1}
+              }
+            },
+            {
+              "required": ["expectedModelName"],
+              "properties": {
+                "expectedModelName": {"type": "string", "minLength": 1}
+              }
+            }
+          ]
+        },
+        "parameters": {
+          "type": "object",
+          "propertyNames": {"pattern": "^[a-z][a-z0-9]*(\\.[a-z0-9]+)*$"},
+          "additionalProperties": {"$ref": "#/$defs/vtubeParameter"}
+        },
+        "hotkeys": {
+          "type": "object",
+          "propertyNames": {"pattern": "^[a-z][a-z0-9_]*$"},
+          "additionalProperties": {"type": "string", "minLength": 1}
         }
       }
     },
-    "hotkeys": {
+    "localSvgProfile": {
       "type": "object",
-      "propertyNames": {"pattern": "^[a-z][a-z0-9_]*$"},
-      "additionalProperties": {"type": "string", "minLength": 1}
+      "additionalProperties": false,
+      "required": ["schemaVersion", "rigId", "renderer", "avatar", "controls", "parameters", "poses"],
+      "properties": {
+        "schemaVersion": {"const": "rig-profile.v1"},
+        "rigId": {"type": "string", "minLength": 1},
+        "renderer": {"const": "local_svg"},
+        "avatar": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["assetId", "viewBox"],
+          "properties": {
+            "assetId": {"type": "string", "minLength": 1},
+            "viewBox": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": ["width", "height"],
+              "properties": {
+                "width": {"type": "number", "exclusiveMinimum": 0},
+                "height": {"type": "number", "exclusiveMinimum": 0}
+              }
+            }
+          }
+        },
+        "controls": {
+          "type": "object",
+          "minProperties": 1,
+          "propertyNames": {"pattern": "^[a-z][A-Za-z0-9]*$"},
+          "additionalProperties": {"$ref": "#/$defs/svgControl"}
+        },
+        "parameters": {
+          "type": "object",
+          "minProperties": 1,
+          "propertyNames": {"pattern": "^[a-z][a-z0-9]*(\\.[a-z0-9]+)*$"},
+          "additionalProperties": {"type": "string", "minLength": 1}
+        },
+        "poses": {
+          "type": "object",
+          "minProperties": 1,
+          "propertyNames": {"pattern": "^[a-z][a-z0-9_]*$"},
+          "additionalProperties": {
+            "type": "array",
+            "minItems": 1,
+            "items": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": ["control", "value"],
+              "properties": {
+                "control": {"type": "string", "minLength": 1},
+                "value": {"type": "number"}
+              }
+            }
+          }
+        }
+      }
     }
-  }
+  },
+  "oneOf": [
+    {"$ref": "#/$defs/vtubeProfile"},
+    {"$ref": "#/$defs/localSvgProfile"}
+  ]
 }

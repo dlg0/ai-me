@@ -1,0 +1,35 @@
+{
+  "schemaVersion": "rig-profile.v1",
+  "rigId": "david_delegate_local_svg_v0",
+  "renderer": "local_svg",
+  "avatar": { "assetId": "david-delegate-svg-v0", "viewBox": { "width": 640, "height": 640 } },
+  "controls": {
+    "headX": { "svgControlId": "avatar-head-x", "min": -30, "max": 30, "neutral": 0 },
+    "headY": { "svgControlId": "avatar-head-y", "min": -30, "max": 30, "neutral": 0 },
+    "headZ": { "svgControlId": "avatar-head-z", "min": -20, "max": 20, "neutral": 0 },
+    "gazeX": { "svgControlId": "avatar-gaze-x", "min": -1, "max": 1, "neutral": 0 },
+    "gazeY": { "svgControlId": "avatar-gaze-y", "min": -1, "max": 1, "neutral": 0 },
+    "brows": { "svgControlId": "avatar-brows", "min": -1, "max": 1, "neutral": 0 },
+    "eyes": { "svgControlId": "avatar-eyes", "min": 0, "max": 1, "neutral": 1 },
+    "mouth": { "svgControlId": "avatar-mouth", "min": 0, "max": 1, "neutral": 0 },
+    "smile": { "svgControlId": "avatar-smile", "min": -1, "max": 1, "neutral": 0 },
+    "caveat": { "svgControlId": "avatar-caveat", "min": 0, "max": 1, "neutral": 0 },
+    "boundary": { "svgControlId": "avatar-boundary", "min": 0, "max": 1, "neutral": 0 }
+  },
+  "parameters": { "head.angle.x": "headX", "head.angle.y": "headY", "head.angle.z": "headZ" },
+  "poses": {
+    "thinking": [{ "control": "gazeY", "value": 0.5 }],
+    "mild_smile": [{ "control": "smile", "value": 0.35 }],
+    "uncertain": [{ "control": "caveat", "value": 0.5 }],
+    "speaking_ready": [{ "control": "mouth", "value": 0.2 }],
+    "boundary": [{ "control": "boundary", "value": 1 }],
+    "defer_to_human": [{ "control": "boundary", "value": 0.65 }],
+    "reset_neutral": [{ "control": "gazeX", "value": 0 }, { "control": "gazeY", "value": 0 }, { "control": "brows", "value": 0 }, { "control": "eyes", "value": 1 }, { "control": "mouth", "value": 0 }, { "control": "smile", "value": 0 }, { "control": "caveat", "value": 0 }, { "control": "boundary", "value": 0 }],
+    "blink": [{ "control": "eyes", "value": 0 }], "slow_blink": [{ "control": "eyes", "value": 0 }],
+    "micro_nod": [{ "control": "headY", "value": 4 }], "small_nod": [{ "control": "headY", "value": 8 }],
+    "head_tilt_left": [{ "control": "headZ", "value": -7 }], "head_tilt_right": [{ "control": "headZ", "value": 7 }],
+    "brow_raise": [{ "control": "brows", "value": 0.55 }], "brow_furrow": [{ "control": "brows", "value": -0.55 }],
+    "glance_aside": [{ "control": "gazeX", "value": 0.65 }], "glance_down": [{ "control": "gazeY", "value": 0.65 }],
+    "half_smile": [{ "control": "smile", "value": 0.5 }], "caveat_expression": [{ "control": "caveat", "value": 0.75 }]
+  }
+}

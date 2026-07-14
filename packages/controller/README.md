@@ -28,8 +28,8 @@ The probe only checks the WebSocket/API state. It does not authenticate or move 
 - Draft 2020-12 JSON Schema validation;
 - semantic diagnostics for bounds, duplicate IDs, state overlap/gaps, gesture density, speech/state mismatch, final reset, and disclosure overlay;
 - ordered dry-run timeline;
-- rig-profile validation;
-- semantic-to-rig command mapping inspection;
+- discriminated local SVG/VTube rig-profile validation;
+- renderer-neutral semantic controls and local SVG/VTube mapping inspection;
 - thin VTube protocol client scaffold.
 
 ## Not implemented

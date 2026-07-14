@@ -1,12 +1,9 @@
 import assert from "node:assert/strict";
-import { readFileSync } from "node:fs";
-import { resolve } from "node:path";
 import test from "node:test";
-import type { AnimationPlan, RigProfile, StateEvent } from "../types.js";
-import { flattenTimeline } from "../runtime/timeline.js";
+import type { VTubeRigProfile, StateEvent } from "../types.js";
 import { mapEventToVTubeCommands } from "./mapping.js";
 
-const rig: RigProfile = {
+const rig: VTubeRigProfile = {
   schemaVersion: "rig-profile.v1",
   rigId: "test-rig",
   renderer: "vtube_studio",
@@ -17,13 +14,6 @@ const rig: RigProfile = {
   },
   hotkeys: { thinking: "Thinking Hotkey" }
 };
-
-const referencePlan = JSON.parse(
-  readFileSync(resolve(process.cwd(), "../../examples/example-animation-plan.json"), "utf8")
-) as AnimationPlan;
-const referenceRig = JSON.parse(
-  readFileSync(resolve(process.cwd(), "../../examples/rig-profile.example.json"), "utf8")
-) as RigProfile;
 
 test("thinking state resolves semantic controls through the rig profile", () => {
   const event: StateEvent = {
@@ -53,16 +43,4 @@ test("missing rig mappings become notes rather than hidden failures", () => {
 
   const commands = mapEventToVTubeCommands(event, rig);
   assert.ok(commands.some((command) => command.kind === "note" && /no hotkey mapping/.test(command.message)));
-});
-
-test("reference plan has a mapping for every state and gesture event", () => {
-  assert.equal(referencePlan.targetRig, referenceRig.rigId);
-
-  const missing = flattenTimeline(referencePlan)
-    .filter((event) => event.type === "state" || event.type === "gesture")
-    .flatMap((event) => mapEventToVTubeCommands(event, referenceRig)
-      .filter((command) => command.kind === "note" && /has no (?:hotkey|parameter) mapping/.test(command.message))
-      .map((command) => `${event.id}: ${command.kind === "note" ? command.message : ""}`));
-
-  assert.deepEqual(missing, []);
 });

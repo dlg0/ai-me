@@ -118,9 +118,12 @@ export interface RigParameterMapping {
   weight?: number;
 }
 
-export interface RigProfile {
+interface BaseRigProfile {
   schemaVersion: "rig-profile.v1";
   rigId: string;
+}
+
+export interface VTubeRigProfile extends BaseRigProfile {
   renderer: "vtube_studio";
   model?: {
     expectedModelId?: string;
@@ -131,6 +134,25 @@ export interface RigProfile {
   /** Value may be a VTube Studio hotkey name or unique hotkey ID. */
   hotkeys: Record<string, string>;
 }
+
+export interface SvgControl {
+  svgControlId: string;
+  min: number;
+  max: number;
+  neutral: number;
+}
+
+export interface LocalSvgRigProfile extends BaseRigProfile {
+  renderer: "local_svg";
+  avatar: { assetId: string; viewBox: { width: number; height: number } };
+  controls: Record<string, SvgControl>;
+  /** Abstract continuous control name to a key in controls. */
+  parameters: Record<string, string>;
+  /** Abstract pose/gesture name to bounded control targets. */
+  poses: Record<string, Array<{ control: string; value: number }>>;
+}
+
+export type RigProfile = VTubeRigProfile | LocalSvgRigProfile;
 
 export type TimelineEvent = StateEvent | GestureEvent | SpeechEvent | OverlayEvent;
 

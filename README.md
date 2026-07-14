@@ -34,12 +34,13 @@ Implemented now:
 - semantic timing and safety diagnostics;
 - dry-run timeline output;
 - rig-profile validation;
-- semantic-to-rig mapping inspection;
+- a discriminated `local_svg`/VTube rig-profile contract;
+- a first-party local SVG control profile and semantic-to-rig mapping inspection;
 - thin VTube WebSocket protocol client scaffold.
 
 Not implemented yet:
 
-- the `local_svg` rig profile, fixed-tick render script, and self-contained player;
+- the fixed-tick render script and self-contained SVG player;
 - restrained SVG mappings, durable artifacts, and visual review evidence;
 - persisted VTube authentication;
 - timed hotkey playback;

@@ -14,7 +14,7 @@ Last clean-check review: **14 July 2026**. See `HANDOFF_REVIEW.md`.
 | Dry-run ordered timeline | Implemented | `npm run demo:dry` |
 | Rig-profile schema + validation | Implemented | `npm run validate:rig` |
 | Semantic-to-rig mapping inspection | Implemented scaffold | `npm run demo:mapping`; no VTube commands are sent |
-| `local_svg` rig profile | Planned, not implemented | Milestone 1 pivot; ADR 0005 |
+| `local_svg` rig profile + bounded control mapping | Implemented | Discriminated profile union, first-party fixture, and `npm run demo:mapping` |
 | Deterministic fixed-tick abstract render script | Planned, not implemented | No visual output exists yet |
 | Self-contained `file://` HTML/SVG player | Planned, not implemented | No player or manual visual evidence yet |
 | Restrained SVG mapping + durable review artifacts | Planned, not implemented | Target is a 20–45 second review at ~320 px |
@@ -29,7 +29,7 @@ Last clean-check review: **14 July 2026**. See `HANDOFF_REVIEW.md`.
 
 ## Recommended next issue
 
-Implement the ADR 0005 path in order: a `local_svg` rig profile, deterministic fixed-tick abstract render script, self-contained `file://` HTML/SVG player, restrained mappings, durable artifacts, then review/replay. These capabilities are planned, not implemented.
+Implement the deterministic fixed-tick abstract render script, then the self-contained `file://` HTML/SVG player, restrained mappings, durable artifacts, and review/replay. The local SVG rig contract is implemented; visual playback is not.
 
 ## External dependency
 

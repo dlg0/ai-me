@@ -4,7 +4,7 @@
   "description": "A first review clip showing listening, thinking, agreement, uncertainty, speaking, and deferral.",
   "durationMs": 28000,
   "safetyMode": "offline_review_only",
-  "targetRig": "david_delegate_live2d_v0",
+  "targetRig": "david_delegate_local_svg_v0",
   "plannerNotes": "Keep expression restrained and professional. The delegate should visibly defer the final decision to David.",
   "tracks": {
     "states": [

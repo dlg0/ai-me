@@ -2,7 +2,9 @@ import type { AnimationPlan, RigProfile } from "../types.js";
 import { validateAnimationPlan } from "../planner/validatePlan.js";
 import { validateRigProfile } from "../planner/validateRigProfile.js";
 import { flattenTimeline } from "../runtime/timeline.js";
-import { mapEventToVTubeCommands } from "../vtube/mapping.js";
+import { mapEventToAbstractCommands } from "../runtime/mapping.js";
+import { resolveLocalSvgCommands } from "../local-svg/mapping.js";
+import { resolveVTubeCommands } from "../vtube/mapping.js";
 import { fail, printWarnings, readJsonFile } from "./io.js";
 
 const planPath = process.argv[2];
@@ -30,13 +32,15 @@ try {
   }
 
   console.log(`Mapping inspection only: ${plan.title}`);
-  console.log("No WebSocket connection is opened and no VTube Studio commands are sent.\n");
+  console.log("No renderer connection is opened and no commands are sent.\n");
   for (const event of flattenTimeline(plan)) {
     console.log(JSON.stringify({
       atMs: event.startMs,
       eventId: event.id,
       eventType: event.type,
-      commands: mapEventToVTubeCommands(event, profile)
+      commands: profile.renderer === "vtube_studio"
+        ? resolveVTubeCommands(mapEventToAbstractCommands(event), profile)
+        : resolveLocalSvgCommands(mapEventToAbstractCommands(event), profile)
     }));
   }
 } catch (error) {

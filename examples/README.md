@@ -4,6 +4,8 @@
 
 A valid regression fixture for the reference scene. It is intended to exercise the schema, semantic diagnostics, timeline, and mapping layer.
 
+It targets `rig-profile.local-svg.json`, the policy-safe first-party SVG contract. That profile centralizes SVG control IDs and bounded values; animation plans remain renderer-independent. It is contract data for the forthcoming player, not an SVG renderer or asset.
+
 ## `rig-profile.example.json`
 
 An **illustrative contract fixture**, not evidence that a matching Live2D/VTube model exists. The head-input IDs use common VTube Studio defaults, while the hotkey selectors are proposed names for the future delegate rig.
