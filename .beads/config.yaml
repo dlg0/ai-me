@@ -66,3 +66,11 @@
 # - github.token    → use GITHUB_TOKEN env var instead
 
 dolt.shared-server: true
+
+export.auto: true
+
+export.path: "issues.jsonl"
+
+import.path: "issues.jsonl"
+
+sync.remote: "git+ssh://git@github.com/dlg0/ai-me.git"
