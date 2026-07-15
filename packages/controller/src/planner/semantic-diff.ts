@@ -55,7 +55,7 @@ function semanticPlan(plan: AnimationPlan): unknown {
   const event = (value: any): any => Object.fromEntries(Object.entries(value).filter(([key]) => !["id", "reason"].includes(key)));
   const sorted = (values: readonly any[] = []) => values.map((value, index) => ({ value, index })).sort((a, b) => a.value.startMs - b.value.startMs || a.index - b.index).map(item => event(item.value));
   return {
-    schemaVersion: plan.schemaVersion, title: plan.title, description: plan.description, durationMs: plan.durationMs,
+    schemaVersion: plan.schemaVersion, title: plan.title, ...(plan.description === undefined ? {} : { description: plan.description }), durationMs: plan.durationMs,
     safetyMode: plan.safetyMode, targetRig: plan.targetRig,
     tracks: { states: sorted(plan.tracks.states), gestures: sorted(plan.tracks.gestures), speech: sorted(plan.tracks.speech), overlays: sorted(plan.tracks.overlays) }
   };

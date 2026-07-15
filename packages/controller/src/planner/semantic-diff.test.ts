@@ -34,6 +34,27 @@ test("event IDs, reasons, and planner notes are ignored", () => {
   assert.equal(diffSemanticPlans(source, right).changes.length, 0);
 });
 
+test("omitted optional descriptions serialize deterministically and description presence is diffed", () => {
+  const left = clone();
+  const right = clone();
+  delete left.description;
+  delete right.description;
+
+  const unchanged = serializeSemanticDiff(diffSemanticPlans(left, right));
+  assert.deepEqual(unchanged, serializeSemanticDiff(diffSemanticPlans(left, right)));
+  assert.match(unchanged.json, /"changes": \[\]/);
+  assert.match(unchanged.markdown, /No semantic changes\./);
+
+  right.description = "New description";
+  const added = diffSemanticPlans(left, right);
+  assert.deepEqual(added.changes, [{ kind: "added", path: "/description", after: "New description" }]);
+  assert.deepEqual(serializeSemanticDiff(added), serializeSemanticDiff(diffSemanticPlans(left, right)));
+
+  const removed = diffSemanticPlans(right, left);
+  assert.deepEqual(removed.changes, [{ kind: "removed", path: "/description", before: "New description" }]);
+  assert.deepEqual(serializeSemanticDiff(removed), serializeSemanticDiff(diffSemanticPlans(right, left)));
+});
+
 test("event insertions and removals align without index-shift cascades", () => {
   for (const index of [0, 2]) {
     const inserted = clone();
