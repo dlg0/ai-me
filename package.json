@@ -23,6 +23,7 @@
     "planner:smoke": "npm run --silent planner:smoke --workspace @ai-delegate-avatar/controller -- ../../examples/scenario-corpus.v1.json",
     "planner:generate": "npm run --silent planner:generate --workspace @ai-delegate-avatar/controller -- ../../examples/scenario-corpus.v1.json",
     "planner:candidates": "npm run --silent planner:candidates --workspace @ai-delegate-avatar/controller --",
+    "planner:acceptance": "npm run --silent planner:acceptance --workspace @ai-delegate-avatar/controller --",
     "planner:diff": "npm run --silent planner:diff --workspace @ai-delegate-avatar/controller --",
     "planner:compare": "npm run --silent planner:compare --workspace @ai-delegate-avatar/controller --",
     "check": "npm run build && npm run test && npm run validate:example && npm run validate:rig"

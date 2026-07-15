@@ -28,11 +28,12 @@ Last clean-check review: **15 July 2026**. See `HANDOFF_REVIEW.md`.
 | Bounded planner orchestration | Implemented | Strict whole-text extraction, scenario validation, one repair by default, typed provenance, and opt-in `npm run planner:generate -- <scenario-id>` |
 | Durable planner candidate sets + semantic diff | Implemented | Bounded sequential generation, non-overwriting checksummed artifacts, duplicate detection, and offline `npm run planner:diff` |
 | Side-by-side candidate render and review bundle | Implemented | Offline `npm run planner:compare`; synchronized sandboxed players, semantic diff, checksummed provenance, and human JSON export |
+| Planner acceptance-run evidence | Implemented; live target met, human preference pending | Pinned-model baseline `20260715T032337.085Z-a90bb7434449` scored 0/10; evidence-linked prompt revision run `20260715T033040.807Z-5c2dabdf6e27` scored 8/10 without hand edits |
 | OBS virtual camera / Teams | Not started | Later phases |
 
 ## Recommended next issue
 
-Consume evidence-bound human preferences safely (`aime-rmz.6`); side-by-side candidate rendering and review export are now durable and offline.
+Complete the evidence-bound human preference for comparison `20260715T033734.742Z-0a5567c07680`, then finalize the Phase 2 trace and close `aime-rmz.6`.
 
 ## External dependency
 

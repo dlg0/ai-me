@@ -20,6 +20,7 @@
     "planner:smoke": "tsx src/cli/planner-smoke.ts",
     "planner:generate": "tsx src/cli/planner-generate.ts",
     "planner:candidates": "tsx src/cli/planner-candidates.ts",
+    "planner:acceptance": "tsx src/cli/planner-acceptance.ts",
     "planner:diff": "tsx src/cli/diff-candidates.ts",
     "planner:compare": "tsx src/cli/compare-candidates.ts",
     "probe:vtube": "tsx src/cli/probe-vtube.ts"
