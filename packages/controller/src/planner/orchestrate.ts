@@ -2,9 +2,10 @@ import type { AnimationPlan } from "../types.js";
 import { createHash } from "node:crypto";
 import { evaluateScenario, type ScenarioCase, type ScenarioEvaluation } from "./evaluate-corpus.js";
 import type { PlannerPromptIdentity, RawPlannerProvider, RawPlannerResponse } from "./provider.js";
+import { AUTHORITATIVE_ANIMATION_PLAN_SCHEMA_JSON } from "./prompt.js";
 
 export const REPAIR_TEMPLATE_ID = "animation-planner-repair";
-export const REPAIR_TEMPLATE_VERSION = "1";
+export const REPAIR_TEMPLATE_VERSION = "2";
 export const DEFAULT_MAX_ATTEMPTS = 2;
 export const MAX_ATTEMPTS = 3;
 
@@ -122,6 +123,7 @@ export function renderRepairPrompt(scenario: ScenarioCase, attempt: PlannerAttem
     : [{ type: "extraction", message: attempt.extractionFailure?.message ?? "Unknown extraction failure" }];
   const context = {
     template: { id: REPAIR_TEMPLATE_ID, version: REPAIR_TEMPLATE_VERSION },
+    authoritativeSchema: JSON.parse(AUTHORITATIVE_ANIMATION_PLAN_SCHEMA_JSON),
     scenario: {
       id: scenario.id, targetRig: scenario.targetRig, durationMs: scenario.durationMs,
       expectations: scenario.expectations
@@ -131,6 +133,8 @@ export function renderRepairPrompt(scenario: ScenarioCase, attempt: PlannerAttem
   };
   return [
     "Repair the prior animation plan using the bounded context below.",
+    "Rebuild the output against authoritativeSchema and satisfy the exact scenario expectations; do not merely patch or imitate the prior shape.",
+    "The context keys template, scenario, failed, authoritativeSchema, and previousRawOutput are wrappers only: never copy them, the schema, or any context wrapper field into the output.",
     "Return exactly one corrected JSON object only. Do not use Markdown fences, commentary, prefixes, suffixes, or multiple values.",
     JSON.stringify(context)
   ].join("\n");

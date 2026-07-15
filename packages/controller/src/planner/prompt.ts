@@ -1,7 +1,11 @@
 import { createHash } from "node:crypto";
+import { readFileSync } from "node:fs";
 import type { ScenarioCase } from "./evaluate-corpus.js";
 
-const required = ["RIG_ID", "DURATION_MS", "SCENE_BRIEF"] as const;
+const schemaUrl = new URL("../../../../schemas/animation-plan.schema.json", import.meta.url);
+export const AUTHORITATIVE_ANIMATION_PLAN_SCHEMA_JSON = JSON.stringify(JSON.parse(readFileSync(schemaUrl, "utf8")));
+
+const required = ["RIG_ID", "DURATION_MS", "SCENE_BRIEF", "SCENARIO_EXPECTATIONS_JSON", "AUTHORITATIVE_SCHEMA_JSON"] as const;
 
 export interface RenderedPlannerPrompt {
   text: string;
@@ -16,7 +20,9 @@ export function renderScenarioPrompt(template: string, scenario: ScenarioCase, d
   const values: Record<(typeof required)[number], string> = {
     RIG_ID: scenario.targetRig,
     DURATION_MS: String(durationMs),
-    SCENE_BRIEF: scenario.brief
+    SCENE_BRIEF: scenario.brief,
+    SCENARIO_EXPECTATIONS_JSON: JSON.stringify(scenario.expectations),
+    AUTHORITATIVE_SCHEMA_JSON: AUTHORITATIVE_ANIMATION_PLAN_SCHEMA_JSON
   };
   let text = template;
   for (const name of required) {
@@ -30,7 +36,7 @@ export function renderScenarioPrompt(template: string, scenario: ScenarioCase, d
   return {
     text,
     templateId: "animation-planner",
-    templateVersion: `sha256:${createHash("sha256").update(template, "utf8").digest("hex")}`,
+    templateVersion: `sha256:${createHash("sha256").update(template, "utf8").update("\0").update(AUTHORITATIVE_ANIMATION_PLAN_SCHEMA_JSON, "utf8").digest("hex")}`,
     durationMs
   };
 }

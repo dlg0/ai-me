@@ -3,7 +3,7 @@ import { readFileSync } from "node:fs";
 import { resolve } from "node:path";
 import test from "node:test";
 import type { RawPlannerProvider, RawPlannerRequest, RawPlannerResponse } from "./provider.js";
-import { extractPlannerObject, MAX_ATTEMPTS, orchestratePlanner, renderRepairPrompt, type PlannerAttempt } from "./orchestrate.js";
+import { extractPlannerObject, MAX_ATTEMPTS, orchestratePlanner, REPAIR_TEMPLATE_VERSION, renderRepairPrompt, type PlannerAttempt } from "./orchestrate.js";
 import type { ScenarioCorpus } from "./evaluate-corpus.js";
 
 const examples = resolve(process.cwd(), "../../examples");
@@ -70,8 +70,14 @@ test("one deterministic repair can succeed and repair context is bounded", async
   assert.equal(result.attempts[1].kind, "repair");
   assert.equal(result.attempts[0].response?.text, hostile);
   assert.equal(provider.requests[1].identity.promptTemplateId, "animation-planner-repair");
-  assert.ok(provider.requests[1].prompt.length < 12_000);
+  assert.ok(provider.requests[1].prompt.length < 24_000);
   assert.match(provider.requests[1].prompt, /one corrected JSON object only/);
+  assert.equal(provider.requests[1].identity.promptTemplateVersion, "2");
+  assert.equal(REPAIR_TEMPLATE_VERSION, "2");
+  assert.match(provider.requests[1].prompt, /authoritativeSchema/);
+  assert.match(provider.requests[1].prompt, /offline_review_only/);
+  assert.match(provider.requests[1].prompt, /scenario expectations/);
+  assert.match(provider.requests[1].prompt, /never copy them/);
 });
 
 test("serialized attempts retain exact prompts and distinct provider IDs under one orchestration ID", async () => {
