@@ -1,0 +1,11 @@
+{
+  "schemaVersion": "animation-plan.v1", "title": "Semantic error", "durationMs": 12000,
+  "safetyMode": "offline_review_only", "targetRig": "david_delegate_local_svg_v0",
+  "tracks": {
+    "states": [
+      { "id": "duplicate", "type": "state", "startMs": 0, "durationMs": 7000, "state": "agreeing" },
+      { "id": "duplicate", "type": "state", "startMs": 6000, "durationMs": 6000, "state": "speaking" }
+    ],
+    "gestures": []
+  }
+}

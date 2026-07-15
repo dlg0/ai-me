@@ -1,0 +1,15 @@
+{
+  "schemaVersion": "animation-plan-candidates.v1",
+  "candidates": {
+    "qualified-answer": "schema-error.json",
+    "simple-factual-answer": "semantic-error.json",
+    "insufficient-context": "policy-error.json",
+    "boundary-refusal": "policy-error.json",
+    "summary": "policy-error.json",
+    "polite-disagreement": "policy-error.json",
+    "silent-listener": "policy-error.json",
+    "correction": "policy-error.json",
+    "action-request": "policy-error.json",
+    "unknown-answer": "policy-error.json"
+  }
+}

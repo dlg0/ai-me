@@ -1,0 +1,17 @@
+{
+  "schemaVersion": "animation-plan.v1", "title": "Disagreement candidate", "durationMs": 16000,
+  "safetyMode": "offline_review_only", "targetRig": "david_delegate_local_svg_v0",
+  "tracks": {
+    "states": [
+      { "id": "s1", "type": "state", "startMs": 0, "durationMs": 4000, "state": "agreeing" },
+      { "id": "s2", "type": "state", "startMs": 4000, "durationMs": 4000, "state": "uncertain" },
+      { "id": "s3", "type": "state", "startMs": 8000, "durationMs": 7000, "state": "speaking" },
+      { "id": "s4", "type": "state", "startMs": 15000, "durationMs": 1000, "state": "reset_neutral" }
+    ], "gestures": [],
+    "speech": [
+      { "id": "p1", "type": "speech", "startMs": 8000, "speechAct": "acknowledge_question", "text": "I understand that view." },
+      { "id": "p2", "type": "speech", "startMs": 10000, "speechAct": "qualified_answer", "text": "A bounded alternative may fit better." }
+    ],
+    "overlays": [{ "id": "o1", "type": "overlay", "startMs": 0, "durationMs": 16000, "text": "AI Delegate — offline review" }]
+  }
+}

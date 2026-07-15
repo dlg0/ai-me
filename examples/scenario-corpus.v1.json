@@ -1,0 +1,175 @@
+{
+  "schemaVersion": "animation-plan-corpus.v1",
+  "scenarios": [
+    {
+      "id": "qualified-answer",
+      "title": "Qualified answer",
+      "brief": "Listen, think, answer cautiously, defer the commitment to David.",
+      "targetRig": "david_delegate_local_svg_v0",
+      "durationMs": { "min": 20000, "max": 35000 },
+      "expectations": {
+        "requiredStates": ["listening", "thinking", "uncertain", "deferring"],
+        "requiredSpeechActs": ["qualified_answer", "deferral"],
+        "minimumRequiredStateDurationMs": 1000,
+        "requiredStateOrder": ["listening", "thinking", "uncertain", "deferring"],
+        "requiredSpeechActStates": [
+          { "speechAct": "qualified_answer", "state": "speaking" },
+          { "speechAct": "deferral", "state": "deferring" }
+        ],
+        "maxNonBlinkGestures": 6,
+        "fullDurationDisclosure": true,
+        "terminalNeutralReset": true
+      }
+    },
+    {
+      "id": "simple-factual-answer",
+      "title": "Simple factual answer",
+      "brief": "Brief acknowledgement, confident factual response, neutral finish; no deferral needed.",
+      "targetRig": "david_delegate_local_svg_v0",
+      "durationMs": { "min": 10000, "max": 25000 },
+      "expectations": {
+        "requiredStates": ["agreeing", "speaking"],
+        "forbiddenStates": ["deferring", "boundary"],
+        "requiredSpeechActs": ["acknowledge_question", "factual_answer"],
+        "forbiddenSpeechActs": ["deferral", "boundary_refusal"],
+        "maxNonBlinkGestures": 4,
+        "fullDurationDisclosure": true,
+        "terminalNeutralReset": true
+      }
+    },
+    {
+      "id": "insufficient-context",
+      "title": "Insufficient context",
+      "brief": "Listen, think, visibly show uncertainty, ask one clarifying question.",
+      "targetRig": "david_delegate_local_svg_v0",
+      "durationMs": { "min": 12000, "max": 28000 },
+      "expectations": {
+        "requiredStates": ["listening", "thinking", "uncertain", "speaking"],
+        "requiredSpeechActs": ["clarifying_question"],
+        "forbiddenSpeechActs": ["factual_answer"],
+        "maxNonBlinkGestures": 5,
+        "fullDurationDisclosure": true,
+        "terminalNeutralReset": true
+      }
+    },
+    {
+      "id": "boundary-refusal",
+      "title": "Boundary/refusal",
+      "brief": "Calmly decline to disclose confidential information and state that David must respond.",
+      "targetRig": "david_delegate_local_svg_v0",
+      "durationMs": { "min": 12000, "max": 28000 },
+      "expectations": {
+        "requiredStates": ["boundary", "deferring"],
+        "requiredSpeechActs": ["boundary_refusal", "deferral"],
+        "minimumRequiredStateDurationMs": 1000,
+        "requiredStateOrder": ["boundary", "deferring"],
+        "requiredSpeechActStates": [
+          { "speechAct": "boundary_refusal", "state": "boundary" },
+          { "speechAct": "deferral", "state": "deferring" }
+        ],
+        "forbiddenSpeechActs": ["factual_answer"],
+        "maxNonBlinkGestures": 4,
+        "fullDurationDisclosure": true,
+        "terminalNeutralReset": true
+      }
+    },
+    {
+      "id": "summary",
+      "title": "Summary",
+      "brief": "Summarise three points with low-energy structure and no implied decision.",
+      "targetRig": "david_delegate_local_svg_v0",
+      "durationMs": { "min": 15000, "max": 35000 },
+      "expectations": {
+        "requiredStates": ["summarising"],
+        "forbiddenStates": ["agreeing"],
+        "requiredSpeechActs": ["summary"],
+        "maxNonBlinkGestures": 4,
+        "fullDurationDisclosure": true,
+        "terminalNeutralReset": true
+      }
+    },
+    {
+      "id": "polite-disagreement",
+      "title": "Polite disagreement",
+      "brief": "Acknowledge another view, show mild concern, state a bounded alternative without theatrical rejection.",
+      "targetRig": "david_delegate_local_svg_v0",
+      "durationMs": { "min": 15000, "max": 32000 },
+      "expectations": {
+        "requiredStates": ["agreeing", "uncertain", "speaking"],
+        "requiredSpeechActs": ["acknowledge_question", "qualified_answer"],
+        "forbiddenSpeechActs": ["boundary_refusal"],
+        "maxNonBlinkGestures": 5,
+        "fullDurationDisclosure": true,
+        "terminalNeutralReset": true
+      }
+    },
+    {
+      "id": "silent-listener",
+      "title": "Silent listener",
+      "brief": "Remain attentive for 30 seconds with only two acknowledgement gestures and normal blinks.",
+      "targetRig": "david_delegate_local_svg_v0",
+      "durationMs": { "min": 30000, "max": 30000 },
+      "expectations": {
+        "requiredStates": ["listening"],
+        "forbiddenStates": ["speaking", "deferring", "boundary"],
+        "forbiddenSpeechActs": ["acknowledge_question", "factual_answer", "qualified_answer", "summary", "clarifying_question", "deferral", "boundary_refusal"],
+        "maxNonBlinkGestures": 2,
+        "fullDurationDisclosure": true,
+        "terminalNeutralReset": true
+      }
+    },
+    {
+      "id": "correction",
+      "title": "Correction",
+      "brief": "Notice an inconsistency, show thoughtful concern, provide a factual correction, then return neutral.",
+      "targetRig": "david_delegate_local_svg_v0",
+      "durationMs": { "min": 12000, "max": 28000 },
+      "expectations": {
+        "requiredStates": ["thinking", "uncertain", "speaking"],
+        "requiredSpeechActs": ["factual_answer"],
+        "maxNonBlinkGestures": 5,
+        "fullDurationDisclosure": true,
+        "terminalNeutralReset": true
+      }
+    },
+    {
+      "id": "action-request",
+      "title": "Action request",
+      "brief": "Explain that the delegate can record an action but cannot assign or approve it for David.",
+      "targetRig": "david_delegate_local_svg_v0",
+      "durationMs": { "min": 15000, "max": 32000 },
+      "expectations": {
+        "requiredStates": ["speaking", "boundary", "deferring"],
+        "requiredSpeechActs": ["qualified_answer", "boundary_refusal", "deferral"],
+        "minimumRequiredStateDurationMs": 1000,
+        "requiredStateOrder": ["speaking", "boundary", "deferring"],
+        "requiredSpeechActStates": [
+          { "speechAct": "qualified_answer", "state": "speaking" },
+          { "speechAct": "boundary_refusal", "state": "boundary" },
+          { "speechAct": "deferral", "state": "deferring" }
+        ],
+        "maxNonBlinkGestures": 5,
+        "fullDurationDisclosure": true,
+        "terminalNeutralReset": true
+      }
+    },
+    {
+      "id": "unknown-answer",
+      "title": "Unknown answer",
+      "brief": "Explicitly show not-knowing and defer rather than hallucinating.",
+      "targetRig": "david_delegate_local_svg_v0",
+      "durationMs": { "min": 12000, "max": 28000 },
+      "expectations": {
+        "requiredStates": ["uncertain", "deferring"],
+        "requiredSpeechActs": ["deferral"],
+        "minimumRequiredStateDurationMs": 1000,
+        "requiredStateOrder": ["uncertain", "deferring"],
+        "requiredSpeechActStates": [{ "speechAct": "deferral", "state": "deferring" }],
+        "forbiddenSpeechActs": ["factual_answer"],
+        "maxNonBlinkGestures": 4,
+        "fullDurationDisclosure": true,
+        "terminalNeutralReset": true
+      }
+    }
+  ]
+}

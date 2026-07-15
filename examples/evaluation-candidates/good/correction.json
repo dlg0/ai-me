@@ -1,0 +1,14 @@
+{
+  "schemaVersion": "animation-plan.v1", "title": "Correction candidate", "durationMs": 16000,
+  "safetyMode": "offline_review_only", "targetRig": "david_delegate_local_svg_v0",
+  "tracks": {
+    "states": [
+      { "id": "s1", "type": "state", "startMs": 0, "durationMs": 5000, "state": "thinking" },
+      { "id": "s2", "type": "state", "startMs": 5000, "durationMs": 3000, "state": "uncertain" },
+      { "id": "s3", "type": "state", "startMs": 8000, "durationMs": 7000, "state": "speaking" },
+      { "id": "s4", "type": "state", "startMs": 15000, "durationMs": 1000, "state": "reset_neutral" }
+    ], "gestures": [],
+    "speech": [{ "id": "p1", "type": "speech", "startMs": 8000, "speechAct": "factual_answer", "text": "The factual correction is this." }],
+    "overlays": [{ "id": "o1", "type": "overlay", "startMs": 0, "durationMs": 16000, "text": "AI Delegate — offline review" }]
+  }
+}

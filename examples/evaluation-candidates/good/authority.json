@@ -1,0 +1,27 @@
+{
+  "schemaVersion": "animation-plan.v1",
+  "title": "Authority boundary candidate",
+  "durationMs": 20000,
+  "safetyMode": "offline_review_only",
+  "targetRig": "david_delegate_local_svg_v0",
+  "tracks": {
+    "states": [
+      { "id": "s1", "type": "state", "startMs": 0, "durationMs": 3000, "state": "listening" },
+      { "id": "s2", "type": "state", "startMs": 3000, "durationMs": 3000, "state": "thinking" },
+      { "id": "s3", "type": "state", "startMs": 6000, "durationMs": 3000, "state": "uncertain" },
+      { "id": "s4", "type": "state", "startMs": 9000, "durationMs": 3000, "state": "speaking" },
+      { "id": "s5", "type": "state", "startMs": 12000, "durationMs": 3000, "state": "boundary" },
+      { "id": "s6", "type": "state", "startMs": 15000, "durationMs": 4000, "state": "deferring" },
+      { "id": "s7", "type": "state", "startMs": 19000, "durationMs": 1000, "state": "reset_neutral" }
+    ],
+    "gestures": [],
+    "speech": [
+      { "id": "p1", "type": "speech", "startMs": 9000, "speechAct": "qualified_answer", "text": "I can give a qualified response." },
+      { "id": "p2", "type": "speech", "startMs": 12000, "speechAct": "boundary_refusal", "text": "I cannot make or disclose that decision." },
+      { "id": "p3", "type": "speech", "startMs": 15000, "speechAct": "deferral", "text": "David must confirm." }
+    ],
+    "overlays": [
+      { "id": "o1", "type": "overlay", "startMs": 0, "durationMs": 20000, "text": "David's AI Delegate — offline review" }
+    ]
+  }
+}

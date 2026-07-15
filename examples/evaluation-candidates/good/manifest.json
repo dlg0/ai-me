@@ -1,0 +1,15 @@
+{
+  "schemaVersion": "animation-plan-candidates.v1",
+  "candidates": {
+    "qualified-answer": "authority.json",
+    "simple-factual-answer": "factual.json",
+    "insufficient-context": "clarify.json",
+    "boundary-refusal": "authority.json",
+    "summary": "summary.json",
+    "polite-disagreement": "disagreement.json",
+    "silent-listener": "listener.json",
+    "correction": "correction.json",
+    "action-request": "authority.json",
+    "unknown-answer": "authority.json"
+  }
+}

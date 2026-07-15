@@ -1,0 +1,12 @@
+{
+  "schemaVersion": "animation-plan.v1", "title": "Summary candidate", "durationMs": 16000,
+  "safetyMode": "offline_review_only", "targetRig": "david_delegate_local_svg_v0",
+  "tracks": {
+    "states": [
+      { "id": "s1", "type": "state", "startMs": 0, "durationMs": 15000, "state": "summarising", "affect": { "energy": 0.25 } },
+      { "id": "s2", "type": "state", "startMs": 15000, "durationMs": 1000, "state": "reset_neutral" }
+    ], "gestures": [],
+    "speech": [{ "id": "p1", "type": "speech", "startMs": 1000, "speechAct": "summary", "text": "First, second, and third." }],
+    "overlays": [{ "id": "o1", "type": "overlay", "startMs": 0, "durationMs": 16000, "text": "AI Delegate — offline review" }]
+  }
+}

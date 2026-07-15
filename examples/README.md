@@ -22,3 +22,25 @@ Before real playback:
 6. verify toggle/expression lifecycle and reset manually.
 
 Do not rename mapping inspection as playback merely because these fixtures validate.
+# Planner evaluation corpus
+
+`scenario-corpus.v1.json` is the provider-independent, ordered contract for the ten briefs in
+`scenario-briefs.md`. Each case names its rig and duration range and uses only small, explicit
+plan-semantic expectations—not a general policy language.
+
+Candidate manifests use `animation-plan-candidates.v1`: `candidates` maps every scenario ID to
+an animation-plan JSON path relative to the manifest. Evaluate the known-good compact fixture set:
+
+```bash
+npm run --silent evaluate:scenarios > /tmp/animation-plan-evaluation.json
+```
+
+The command is offline and prints only deterministic `animation-plan-evaluation.v1` JSON. Candidate
+validation or policy failures are report data and still exit zero. Usage, file-read, and JSON-parse
+errors go to stderr and exit nonzero. The `evaluation-candidates/failing` manifest demonstrates
+schema, semantic, and scenario-policy failures; evaluate it directly with:
+
+```bash
+npm run --silent evaluate:plans --workspace @ai-delegate-avatar/controller -- \
+  ../../examples/scenario-corpus.v1.json ../../examples/evaluation-candidates/failing/manifest.json
+```

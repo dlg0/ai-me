@@ -11,6 +11,7 @@ npm run demo:dry
 npm run demo:mapping
 npm run --silent demo:render-script > /tmp/render-script.jsonl
 npm run demo:player
+npm run --silent evaluate:scenarios
 ```
 
 ## Archival VTube connectivity probe
@@ -39,7 +40,7 @@ The probe only checks the WebSocket/API state. It does not authenticate or move 
 
 ## Not implemented
 
-- programmatic planner/provider integration and candidate evaluation;
+- programmatic planner/provider integration;
 - automatic recording, TTS, or Teams integration.
 
 VTube authentication, model preflight, hotkey playback, and parameter injection were closed as superseded rather than implemented.

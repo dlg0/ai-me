@@ -1,0 +1,16 @@
+{
+  "schemaVersion": "animation-plan.v1", "title": "Factual candidate", "durationMs": 12000,
+  "safetyMode": "offline_review_only", "targetRig": "david_delegate_local_svg_v0",
+  "tracks": {
+    "states": [
+      { "id": "s1", "type": "state", "startMs": 0, "durationMs": 3000, "state": "agreeing" },
+      { "id": "s2", "type": "state", "startMs": 3000, "durationMs": 8000, "state": "speaking" },
+      { "id": "s3", "type": "state", "startMs": 11000, "durationMs": 1000, "state": "reset_neutral" }
+    ], "gestures": [],
+    "speech": [
+      { "id": "p1", "type": "speech", "startMs": 3000, "speechAct": "acknowledge_question", "text": "Understood." },
+      { "id": "p2", "type": "speech", "startMs": 5000, "speechAct": "factual_answer", "text": "Here is the fact." }
+    ],
+    "overlays": [{ "id": "o1", "type": "overlay", "startMs": 0, "durationMs": 12000, "text": "AI Delegate — offline review" }]
+  }
+}

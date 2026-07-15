@@ -19,6 +19,7 @@
     "demo:render-script": "npm run compile:render-script --workspace @ai-delegate-avatar/controller -- ../../examples/example-animation-plan.json",
     "demo:player": "npm run generate:player --workspace @ai-delegate-avatar/controller -- ../../examples/example-animation-plan.json ../../examples/rig-profile.local-svg.json ../../runs/local-svg-player.html",
     "demo:run": "npm run create:run --workspace @ai-delegate-avatar/controller -- ../../examples/example-animation-plan.json ../../examples/rig-profile.local-svg.json ../../runs",
+    "evaluate:scenarios": "npm run --silent evaluate:plans --workspace @ai-delegate-avatar/controller -- ../../examples/scenario-corpus.v1.json ../../examples/evaluation-candidates/good/manifest.json",
     "check": "npm run build && npm run test && npm run validate:example && npm run validate:rig"
   }
 }

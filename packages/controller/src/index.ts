@@ -2,6 +2,7 @@ export * from "./types.js";
 export * from "./planner/diagnostics.js";
 export * from "./planner/validatePlan.js";
 export * from "./planner/validateRigProfile.js";
+export * from "./planner/evaluate-corpus.js";
 export * from "./runtime/mapping.js";
 export * from "./runtime/timeline.js";
 export * from "./runtime/render-script.js";
