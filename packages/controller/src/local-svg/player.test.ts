@@ -52,13 +52,16 @@ test("resolved controls are quantized to four decimals and normalize negative ze
 test("generator is deterministic, self-contained, and embeds playback and neutral data", () => {
   const a = generateLocalSvgPlayer(plan, profile), b = generateLocalSvgPlayer(plan, profile);
   assert.equal(a, b);
-  for (const text of ["<svg", "mouth-open", "HANDOFF TO DAVID", ">Start<", "Pause", "Restart", "countdown", "visualMapping", "renderScript", "neutralControls", "currentState", plan.tracks.overlays![0]!.text, "offline prototype", "current"]) assert.ok(a.includes(text), text);
+  for (const text of ["<svg", "mouth-open", "HANDOFF TO DAVID", ">Start<", "Pause", "Restart", "countdown", "visualMapping", "renderScript", "neutralControls", "currentState", plan.tracks.overlays![0]!.text, "offline prototype", "current", "This is neutral."]) assert.ok(a.includes(text), text);
   assert.doesNotMatch(a, /(?:https?:|<script[^>]+src=|<link\b|\b(?:fetch|XMLHttpRequest|WebSocket|import)\s*\()/i);
   assert.doesNotMatch(a, /Math\.random|setInterval/);
   assert.match(a, /@media\(max-width:420px\).*\.restart\{grid-column:3\}/);
   assert.match(a, /countdown" hidden>3/); assert.match(a, /status">Ready</); assert.match(a, /let mode='ready'/);
-  assert.match(a, /start\.addEventListener\('click',begin\)/); assert.match(a, /function restart\(\).*setNeutral\(\);status\.classList\.remove\('error'\).*mode='countdown'/s); assert.match(a, /at>=data\.metadata\.durationMs\)\{setNeutral\(\)/);
-  assert.match(a, /current\.textContent=frame\.currentState\|\|'neutral'/); assert.match(a, /\(n%60000\)\/1000/);
+  assert.match(a, /start\.addEventListener\('click',begin\)/); assert.match(a, /function restart\(\).*setNeutral\(\);displayState\(null\);status\.classList\.remove\('error'\).*mode='countdown'/s); assert.match(a, /at>=data\.metadata\.durationMs\)\{setNeutral\(\)/);
+  assert.match(a, /displayState\(frame\.currentState\)/); assert.match(a, /\(n%60000\)\/1000/);
+  assert.match(a, /class="state-label" role="status" aria-live="polite" aria-atomic="true"/);
+  assert.match(a, /stateLabel\.textContent=isError\?'Playback error\.':'This is '\+String\(raw\)\.replace\(\/_\/g,' '\)\+'\.'/);
+  assert.doesNotMatch(a, /stateLabel\.innerHTML/);
 });
 
 test("embedded player accepts only exact versioned parent commands and preserves neutral lifecycle", () => {
@@ -73,9 +76,14 @@ test("embedded player accepts only exact versioned parent commands and preserves
   assert.match(html, /togglePause\(m\.command==='pause'\)/);
   assert.match(html, /window\.parent!==window.*\.panel.*hidden=true/);
   assert.match(html, /\.panel\[hidden\]\{display:none\}/);
+  assert.doesNotMatch(html, /\.state-label\[hidden\]/);
   assert.doesNotMatch(html, /window\.frameElement/);
   assert.match(html, /function restart\(\).*setNeutral\(\)/s);
+  assert.match(html, /function restart\(\).*displayState\(null\)/s);
   assert.match(html, /at>=data\.metadata\.durationMs\)\{setNeutral\(\)/);
+  assert.match(html, /at>=data\.metadata\.durationMs\).*displayState\(null\)/s);
+  assert.match(html, /catch\(e\)\{setNeutral\(\);displayState\(null,true\)/);
+  assert.doesNotMatch(html, /current\.textContent=String\(e/);
 });
 
 test("generated reference frames expose plan-derived semantic state names", () => {

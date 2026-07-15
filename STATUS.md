@@ -27,13 +27,13 @@ Last clean-check review: **15 July 2026**. See `HANDOFF_REVIEW.md`.
 | Raw programmatic planner integration | Implemented | Provider-neutral boundary, prompt versioning, and opt-in raw-only `npm run planner:smoke -- <scenario-id>` OpenAI Responses adapter |
 | Bounded planner orchestration | Implemented | Strict whole-text extraction, scenario validation, one repair by default, typed provenance, and opt-in `npm run planner:generate -- <scenario-id>` |
 | Durable planner candidate sets + semantic diff | Implemented | Bounded sequential generation, non-overwriting checksummed artifacts, duplicate detection, and offline `npm run planner:diff` |
-| Side-by-side candidate render and review bundle | Implemented | Offline `npm run planner:compare`; synchronized sandboxed players, semantic diff, checksummed provenance, and human JSON export |
+| Side-by-side candidate render and review bundle | Implemented | Offline `npm run planner:compare`; synchronized sandboxed players with on-avatar semantic-state labels, semantic diff, checksummed provenance, and human JSON export |
 | Planner acceptance-run evidence | Implemented; live target met, human preference pending | Pinned-model baseline `20260715T032337.085Z-a90bb7434449` scored 0/10; evidence-linked prompt revision run `20260715T033040.807Z-5c2dabdf6e27` scored 8/10 without hand edits |
 | OBS virtual camera / Teams | Not started | Later phases |
 
 ## Recommended next issue
 
-Complete the evidence-bound human preference for the guided comparison `20260715T072026.184Z-0a5567c07680`, then finalize the Phase 2 trace and close `aime-rmz.6`.
+Complete the evidence-bound human preference for the state-labelled guided comparison `20260715T085251.873Z-0a5567c07680`, then finalize the Phase 2 trace and close `aime-rmz.6`.
 
 ## External dependency
 

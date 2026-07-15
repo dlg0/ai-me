@@ -134,6 +134,7 @@ test("comparison explains silent review, semantic differences, anchored rubric, 
   const html = readFileSync(join(result.comparisonDirectory, "comparison.html"), "utf8");
   assert.match(html, /No audio is expected in this milestone/);
   assert.match(html, /Speech events only time the speaking and mouth posture/);
+  assert.match(html, /Use the on-avatar state label as the intended-state reference, then judge whether the visible expression and motion match it; do not grade the label itself\./);
   assert.match(html, /Equal scores plus <strong>no preference<\/strong> are valid/);
   assert.match(html, /State vocabulary is the same and state order is the same/);
   assert.match(html, /Gesture vocabulary is the same and gesture sequence is the same/);

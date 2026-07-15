@@ -85,3 +85,5 @@ The command is offline and keyless. It creates a non-overwriting comparison dire
 Complete the human-only rubric and preference (`left`, `right`, `tie`, or `no-preference`) in the page, then download the evidence-bound JSON record. The page does not infer scores or preferences. Provider calls, rig changes, frame compilation in planner code, capture, voice, and live-meeting integration are non-goals.
 
 No audio is expected in this milestone: speech events only drive speaking and mouth-posture timing. If candidates look equivalent, equal anchored 1–5 scores and `no-preference` are valid; the reviewer may explicitly copy left scores to right and then adjust them. Required checks apply to pair-level stop, safety, and lifecycle behavior rather than preference differences.
+
+Each embedded avatar displays its current semantic state as an on-avatar reference label for judging whether the visible expression and motion match.
