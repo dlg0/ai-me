@@ -90,7 +90,7 @@ Non-goal: timed playback.
 
 ## M1-005 — Clocked hotkey playback
 
-Status: **not implemented**.
+Status: **deferred**; VTube Studio installation is blocked by organizational IT policy.
 
 Objective:
 
@@ -111,7 +111,7 @@ Acceptance criteria:
 
 ## M1-006 — Smoothed parameter injection loop
 
-Status: **not implemented**.
+Status: **deferred**; VTube Studio installation is blocked by organizational IT policy.
 
 Objective:
 
@@ -130,24 +130,24 @@ Acceptance criteria:
 
 ## M1-007 — First professional taste mapping
 
-Status: **partial**; inspection mapping exists, visual mapping does not.
+Status: **implemented** on the first-party local SVG review rig.
 
 Objective:
 
-Create a restrained mapping for the reference scene on a real model.
+Create a restrained mapping for the reference scene on the first-party local SVG avatar.
 
 Acceptance criteria:
 
-- [ ] listening, thinking, agreement, uncertainty, speaking-ready, deferral, and reset are visually distinct;
-- [ ] default motion remains below the documented style limits;
-- [ ] stillness is present;
-- [ ] mapping constants are centralised and reviewable;
-- [ ] no renderer IDs leak into animation-plan JSON;
-- [ ] review at Teams-tile size.
+- [x] listening, thinking, agreement, uncertainty, speaking-ready, deferral, and reset are visually distinct;
+- [x] default motion remains below the documented style limits;
+- [x] stillness is present;
+- [x] mapping constants are centralised and reviewable;
+- [x] no renderer IDs leak into animation-plan JSON;
+- [x] review at Teams-tile size.
 
 ## M1-008 — Durable run artefacts
 
-Status: **not implemented**.
+Status: **implemented**.
 
 Objective:
 
@@ -155,17 +155,17 @@ Create one self-contained folder per playback.
 
 Acceptance criteria:
 
-- [ ] stable run ID and `manifest.json`;
-- [ ] copies of plan and rig profile;
-- [ ] validation warnings captured;
-- [ ] `renderer-log.jsonl` with timestamps, event IDs, resolved commands, requests/responses/errors;
-- [ ] review notes created from `templates/review-notes.md`;
-- [ ] recording path/checksum can be added after manual capture;
-- [ ] incomplete/failed runs are retained and marked rather than silently deleted.
+- [x] stable run ID and `manifest.json`;
+- [x] copies of plan and rig profile;
+- [x] validation warnings captured;
+- [x] `renderer-log.jsonl` with timestamps, event IDs, resolved commands, decisions, and errors;
+- [x] review notes created from `templates/review-notes.md`;
+- [x] recording path/checksum can be added after manual capture;
+- [x] incomplete/failed runs are retained and marked rather than silently deleted.
 
 ## M1-009 — First review clip
 
-Status: **blocked on M1-004 through M1-008 plus a usable rig**.
+Status: **ready for local SVG review/replay**; the David-specific/VTube track remains deferred.
 
 Objective:
 

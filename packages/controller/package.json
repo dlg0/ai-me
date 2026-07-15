@@ -15,6 +15,7 @@
     "inspect:mapping": "tsx src/cli/inspect-mapping.ts",
     "compile:render-script": "tsx src/cli/compile-render-script.ts",
     "generate:player": "tsx src/cli/generate-local-svg-player.ts",
+    "create:run": "tsx src/cli/create-local-svg-run.ts",
     "probe:vtube": "tsx src/cli/probe-vtube.ts"
   },
   "dependencies": {

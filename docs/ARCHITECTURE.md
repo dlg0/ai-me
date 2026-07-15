@@ -26,7 +26,7 @@ Self-contained HTML/SVG player
 Review capture / later OBS virtual camera
 ```
 
-The current `local_svg` profile and renderer are planned, not implemented. A parallel, deferred asset pipeline may later produce a Live2D model, VTube configuration, and profile.
+The `local_svg` profile, deterministic runtime, player, and durable run bundle are implemented for Milestone 1. A parallel, deferred asset pipeline may later produce a Live2D model, VTube configuration, and profile.
 
 ## Critical parameter distinction (VTube example, deferred)
 
@@ -94,7 +94,7 @@ A versioned adapter manifest for one configured avatar:
 
 The profile is data, not executable animation logic.
 
-### 5. Local SVG adapter (Milestone 1; planned)
+### 5. Local SVG adapter (Milestone 1; implemented)
 
 Responsibilities:
 

@@ -1,7 +1,7 @@
 import type { AnimationPlan, LocalSvgRigProfile } from "../types.js";
 import { validateAnimationPlan } from "../planner/validatePlan.js";
 import { validateRigProfile } from "../planner/validateRigProfile.js";
-import { compileRenderScript } from "../runtime/render-script.js";
+import { compileRenderScript, type CompileRenderScriptOptions } from "../runtime/render-script.js";
 import { localSvgNeutralControls, resolveLocalSvgFrame } from "./mapping.js";
 
 const ASSET_ID = "david-delegate-svg-v0";
@@ -31,7 +31,7 @@ const VISUAL_MAPPING = {
   mouthOpenOpacity: 3
 } as const;
 
-export function generateLocalSvgPlayer(planInput: unknown, profileInput: unknown): string {
+export function generateLocalSvgPlayer(planInput: unknown, profileInput: unknown, compileOptions: CompileRenderScriptOptions = {}): string {
   const pv = validateAnimationPlan(planInput);
   if (!pv.valid) throw new Error(`Invalid animation plan:\n${pv.errors.map(e => `- ${e}`).join("\n")}`);
   const rv = validateRigProfile(profileInput);
@@ -49,10 +49,13 @@ export function generateLocalSvgPlayer(planInput: unknown, profileInput: unknown
   }
   const disclosure = plan.tracks.overlays?.find(o => o.startMs === 0 && o.durationMs === plan.durationMs && /ai/i.test(o.text) && /delegate/i.test(o.text));
   if (!disclosure) throw new Error("Plan requires a full-duration overlay starting at 0 whose text contains AI and delegate");
-  const records = compileRenderScript(plan);
+  const records = compileRenderScript(plan, compileOptions);
+  const terminal = records.find(record => record.record === "end");
+  if (!terminal || terminal.record !== "end") throw new Error("Render script has no terminal end record");
+  const playbackDurationMs = terminal.atMs;
   const statesById = new Map(plan.tracks.states.map(event => [event.id, event.state]));
   const frames = records.filter(r => r.record === "frame").map(frame => ({ atMs: frame.atMs, controls: resolveLocalSvgFrame(frame, profile), currentState: frame.activeEventIds.map(id => statesById.get(id)).find(state => state !== undefined) ?? null, activeEventIds: frame.activeEventIds }));
-  const payload = { metadata: { title: plan.title, durationMs: plan.durationMs, rigId: profile.rigId, assetId: profile.avatar.assetId, disclosure: disclosure.text }, visualMapping: VISUAL_MAPPING, renderScript: records, frames, neutralControls: localSvgNeutralControls(profile) };
+  const payload = { metadata: { title: plan.title, durationMs: playbackDurationMs, planDurationMs: plan.durationMs, outcome: terminal.outcome, rigId: profile.rigId, assetId: profile.avatar.assetId, disclosure: disclosure.text }, visualMapping: VISUAL_MAPPING, renderScript: records, frames, neutralControls: localSvgNeutralControls(profile) };
   const json = JSON.stringify(payload).replace(/[<>&]/g, c => ({"<":"\\u003c", ">":"\\u003e", "&":"\\u0026"}[c]!));
   const title = escapeHtml(plan.title);
   const w = profile.avatar.viewBox.width, h = profile.avatar.viewBox.height;
@@ -70,7 +73,7 @@ let mode='ready',started=0,pausedAt=0,pauseTotal=0,last=-1,raf=0;const f=n=>{con
 function applyControls(c){const v=id=>c[id],open=v('avatar-mouth');head.setAttribute('transform','translate('+(v('avatar-head-x')*visual.headTranslateX)+' '+(v('avatar-head-y')*visual.headTranslateY)+') rotate('+v('avatar-head-z')+' 320 300)');pupils.setAttribute('transform','translate('+(v('avatar-gaze-x')*visual.gazeTranslateX)+' '+(v('avatar-gaze-y')*visual.gazeTranslateY)+')');eyes.setAttribute('transform','translate(0 '+(294*(1-v('avatar-eyes')))+') scale(1 '+v('avatar-eyes')+')');brows.setAttribute('transform','translate(0 '+(-v('avatar-brows')*visual.browTranslateY)+')');mouth.setAttribute('d','M282 362 Q320 '+(378+v('avatar-smile')*visual.smileCurve-open*visual.mouthCurve)+' 358 362');mouth.setAttribute('stroke-width',String(visual.mouthStroke+open*visual.mouthStroke));mouthOpen.setAttribute('ry',String(open*visual.mouthOpenRadius));mouthOpen.setAttribute('opacity',String(Math.min(1,open*visual.mouthOpenOpacity)));caveat.setAttribute('opacity',String(v('avatar-caveat')));boundary.setAttribute('opacity',String(v('avatar-boundary')))}
 function begin(){if(mode==='countdown'||mode==='playing'||mode==='paused'||mode==='paused-countdown')return;restart()}
 function restart(){cancelAnimationFrame(raf);setNeutral();status.classList.remove('error');mode='countdown';started=performance.now();pauseTotal=0;last=-1;countdown.hidden=false;countdown.textContent='3';status.textContent='Countdown';current.textContent='neutral';start.disabled=true;pause.disabled=false;pause.textContent='Pause';time.textContent=f(0)+' / '+f(data.metadata.durationMs);raf=requestAnimationFrame(tick)}
-function tick(now){try{if(mode==='paused'||mode==='paused-countdown'){raf=requestAnimationFrame(tick);return}const elapsed=now-started-pauseTotal;if(mode==='countdown'){const left=3000-elapsed;if(left>0){countdown.textContent=String(Math.ceil(left/1000));raf=requestAnimationFrame(tick);return}mode='playing';started=now;pauseTotal=0;countdown.hidden=true;status.textContent='Playing'}const at=now-started-pauseTotal;if(at>=data.metadata.durationMs){setNeutral();mode='completed';status.textContent='Completed';current.textContent='neutral';start.disabled=false;pause.disabled=true;time.textContent=f(data.metadata.durationMs)+' / '+f(data.metadata.durationMs);return}let i=Math.min(data.frames.length-1,Math.floor(at/(data.renderScript[0].tickMs)));if(i!==last){last=i;const frame=data.frames[i];applyControls(frame.controls);current.textContent=frame.currentState||'neutral'}time.textContent=f(at)+' / '+f(data.metadata.durationMs);raf=requestAnimationFrame(tick)}catch(e){setNeutral();mode='error';status.textContent='Error';status.classList.add('error');current.textContent=String(e instanceof Error?e.message:e);start.disabled=false;pause.disabled=true}}
+function tick(now){try{if(mode==='paused'||mode==='paused-countdown'){raf=requestAnimationFrame(tick);return}const elapsed=now-started-pauseTotal;if(mode==='countdown'){const left=3000-elapsed;if(left>0){countdown.textContent=String(Math.ceil(left/1000));raf=requestAnimationFrame(tick);return}mode='playing';started=now;pauseTotal=0;countdown.hidden=true;status.textContent='Playing'}const at=now-started-pauseTotal;if(at>=data.metadata.durationMs){setNeutral();mode=data.metadata.outcome;status.textContent=data.metadata.outcome==='completed'?'Completed':data.metadata.outcome==='cancelled'?'Cancelled':'Error';status.classList.toggle('error',data.metadata.outcome==='error');current.textContent='neutral';start.disabled=false;pause.disabled=true;time.textContent=f(data.metadata.durationMs)+' / '+f(data.metadata.durationMs);return}let i=Math.min(data.frames.length-1,Math.floor(at/(data.renderScript[0].tickMs)));if(i!==last){last=i;const frame=data.frames[i];applyControls(frame.controls);current.textContent=frame.currentState||'neutral'}time.textContent=f(at)+' / '+f(data.metadata.durationMs);raf=requestAnimationFrame(tick)}catch(e){setNeutral();mode='error';status.textContent='Error';status.classList.add('error');current.textContent=String(e instanceof Error?e.message:e);start.disabled=false;pause.disabled=true}}
 pause.addEventListener('click',()=>{if(mode==='playing'||mode==='countdown'){pausedAt=performance.now();mode=mode==='countdown'?'paused-countdown':'paused';status.textContent='Paused';pause.textContent='Resume'}else if(mode==='paused'||mode==='paused-countdown'){const wasCountdown=mode==='paused-countdown';pauseTotal+=performance.now()-pausedAt;mode=wasCountdown?'countdown':'playing';status.textContent=wasCountdown?'Countdown':'Playing';pause.textContent='Pause'}});start.addEventListener('click',begin);$('.restart').addEventListener('click',restart);document.addEventListener('visibilitychange',()=>{if(document.hidden&&(mode==='playing'||mode==='countdown'))pause.click()});setNeutral();time.textContent=f(0)+' / '+f(data.metadata.durationMs);
 </script></body></html>\n`;
 }

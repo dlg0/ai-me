@@ -6,7 +6,7 @@ Build the smallest end-to-end loop that demonstrates the project's novel element
 
 > A semantic plan produced by a human or AI agent drives a stylised avatar in a self-contained local HTML/SVG player, and the resulting behaviour can be replayed and reviewed.
 
-An integrated LLM API call is not required. The milestone ends when a 20–45 second result is reviewable at approximately 320 px—not when a mapping is merely printed. The SVG player generator and functional Chrome check are complete; taste tuning and the milestone review/replay remain pending.
+An integrated LLM API call is not required. The milestone ends when a 20–45 second result is reviewable at approximately 320 px—not when a mapping is merely printed. The SVG player, restrained vocabulary, and durable run bundles are complete; the milestone review/replay remains pending.
 
 ## Why this comes first
 
@@ -46,12 +46,16 @@ runs/<run-id>/
 ├── manifest.json
 ├── plan.json
 ├── rig-profile.json
+├── validation-diagnostics.json
+├── render-script.jsonl
 ├── renderer-log.jsonl
 ├── review-notes.md
 └── player.html          # self-contained file:// review player
 ```
 
 The log must distinguish planned events, fixed-tick resolved controls, rendered state/errors, and final reset. The player displays AI-delegate disclosure for its full duration.
+
+Create a durable example bundle with `npm run demo:run`. Each invocation creates a path-safe timestamp-and-content-hash directory under ignored `runs/` and refuses to overwrite an existing run. Its manifest records source and artifact SHA-256 values, outcome, reset/release evidence, optional recording attachment fields, and the explicit offline AI-delegate prototype identity. Exact source bytes are retained; invalid or unexpectedly interrupted generation attempts remain visibly failed or incomplete rather than being deleted.
 
 ## Target scene
 

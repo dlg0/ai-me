@@ -1,5 +1,7 @@
 # Review Notes
 
+> Offline AI-delegate prototype review. This artefact is not David personally attending or speaking.
+
 ## Run
 
 - Run ID:
@@ -38,7 +40,7 @@
 
 | Priority | Timestamp | Observation | Layer | Proposed change |
 |---|---:|---|---|---|
-| 1 |  |  | plan / runtime / rig / VTS / capture |  |
+| 1 |  |  | plan / runtime / rig / renderer / capture |  |
 | 2 |  |  |  |  |
 | 3 |  |  |  |  |
 | 4 |  |  |  |  |
