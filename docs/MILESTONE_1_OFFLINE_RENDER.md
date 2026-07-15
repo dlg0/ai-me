@@ -6,7 +6,7 @@ Build the smallest end-to-end loop that demonstrates the project's novel element
 
 > A semantic plan produced by a human or AI agent drives a stylised avatar in a self-contained local HTML/SVG player, and the resulting behaviour can be replayed and reviewed.
 
-An integrated LLM API call is not required. The milestone ends when a 20–45 second result is reviewable at approximately 320 px—not when a mapping is merely printed. The SVG player, restrained vocabulary, and durable run bundles are complete; the milestone review/replay remains pending.
+An integrated LLM API call is not required. The milestone ends when a 20–45 second result is reviewable at approximately 320 px—not when a mapping is merely printed. The SVG player, restrained vocabulary, durable run bundles, and comparable review/replay are complete; see `HANDOFF_REVIEW.md`.
 
 ## Why this comes first
 

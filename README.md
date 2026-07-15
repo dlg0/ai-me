@@ -25,7 +25,7 @@ The avatar should make otherwise hidden agent states legible: listening, thinkin
 
 ## Current status
 
-This repository includes a deterministic offline local-SVG player generator. See [`STATUS.md`](STATUS.md) before assigning work and [`HANDOFF_REVIEW.md`](HANDOFF_REVIEW.md) for the earlier scaffold verification record.
+This repository includes a completed Milestone 1 deterministic offline local-SVG review loop. See [`STATUS.md`](STATUS.md) before assigning work and [`HANDOFF_REVIEW.md`](HANDOFF_REVIEW.md) for the comparable replay evidence.
 
 Implemented now:
 
@@ -38,11 +38,13 @@ Implemented now:
 - a first-party local SVG control profile and semantic-to-rig mapping inspection;
 - deterministic renderer-neutral `render-script.v1` JSONL compilation;
 - deterministic, self-contained `file://` HTML/SVG player generation;
+- restrained local SVG mannerism mapping reviewed at 320px;
+- durable completed/cancelled/error/incomplete run artifacts and checksummed logs;
+- comparable full-size/320px review and replay with exact neutral reset;
 - thin VTube WebSocket protocol client scaffold.
 
 Not implemented yet:
 
-- durable artifacts, taste tuning, and visual review evidence;
 - persisted VTube authentication;
 - timed hotkey playback;
 - smoothed/repeated parameter injection;
@@ -62,10 +64,12 @@ npm run demo:dry
 npm run demo:mapping
 npm run --silent demo:render-script > /tmp/render-script.jsonl
 npm run demo:player
+npm run demo:run
 ```
 
 `npm run demo:mapping` is inspection only. It opens no WebSocket and sends nothing to VTube Studio.
 `demo:player` writes the ignored `runs/local-svg-player.html`; open it directly in a browser. It uses only inline HTML, SVG, CSS, JavaScript, and precomputed frames.
+`demo:run` creates an ignored, non-overwriting review bundle with exact inputs, diagnostics, deterministic scripts/logs, a player, and review notes.
 
 ## Milestone 1
 
@@ -82,10 +86,10 @@ Programmatic LLM integration comes after this loop is visually worth iterating. 
 
 ## Avatar dependency
 
-The controller and the David-specific artwork are separate workstreams:
+The local SVG controller and the deferred David-specific artwork are separate workstreams:
 
-- **Runtime track:** use any known-good Live2D test model to build playback.
-- **Avatar asset track:** decompose or redraw the selected avatar, rig it, configure VTube inputs/hotkeys, and create its rig profile.
+- **Milestone 1 runtime track:** use the implemented first-party stylised SVG avatar and versioned `local_svg` profile.
+- **Deferred avatar asset track:** if policy later permits, decompose or redraw selected artwork, rig it, configure VTube inputs/hotkeys, and create a separate profile.
 
 See [`docs/ASSET_PIPELINE.md`](docs/ASSET_PIPELINE.md). This separation prevents the code team from being blocked while the final avatar is prepared.
 
@@ -94,7 +98,7 @@ See [`docs/ASSET_PIPELINE.md`](docs/ASSET_PIPELINE.md). This separation prevents
 ```text
 AGENTS.md                         coding-agent operating instructions
 STATUS.md                         implemented vs pending source of truth
-HANDOFF_REVIEW.md                 final audit, verified commands, and open external checks
+HANDOFF_REVIEW.md                 milestone replay evidence plus historical scaffold audit
 OBJECTIVE.md                      project intent and larger product boundary
 ROADMAP.md                        staged path from offline clip to Teams
 

@@ -1,6 +1,47 @@
-# Final Handoff Review
+# Review Records
 
-> Historical note: this review records the pre-pivot scaffold handoff. ADR 0005 and `STATUS.md` now define a policy-safe local SVG critical path; the VTube recommendation below is deferred because organizational IT blocks installation.
+## Milestone 1 offline SVG completion — 15 July 2026
+
+**Verdict:** the policy-safe Milestone 1 loop is complete. The unchanged 28-second semantic plan was reviewed in self-contained local SVG bundles at full size and at a 320px browser viewport, revised only at the rig/renderer boundary, and replayed with a byte-identical abstract render script.
+
+### Comparable evidence
+
+- Replay A: `20260715T001338.814Z-79518f1791c2`
+- Final Replay B: `20260715T003121.821Z-d97aaab3251d`
+- shared plan SHA-256: `bff27295694c1a212c25573bde0dba61166835f63d1b082f37ebdb59ebc2854a`
+- shared `render-script.jsonl` SHA-256: `b2e8e1673a8b0043c375b2d1828b48eed22d7a069ea2871d16b0e847589c2eed`
+- baseline/revised profile SHA-256: `cba2c61e08803cb92162b783d834aaa8da186f222c89e7b8edfaefaa901b8570` / `c13c2041a3434fd70d6062935c67d4680e5f2159d9e5801d98e22bea6b411911`
+
+The ignored run folders contain exact plan/profile copies, checksummed manifests, validation diagnostics, deterministic abstract scripts, resolved renderer logs, self-contained players, and completed review notes. No recording was captured; recording is optional for the local SVG acceptance and both manifests retain null attachment fields.
+
+### Review outcome
+
+- Replay A scored 3/5 for state legibility, epistemic legibility, and small-tile readability while passing every stop condition.
+- Final Replay B scored 4/5 in those dimensions and 5/5 for restraint, temporal coherence, rig stability/reset, disclosure, and repeatability.
+- Listening, thinking, mild agreement, uncertainty/caveat, speaking-ready, and deferral were identifiable at 320px without relying on the current-state label.
+- The full-duration AI-delegate disclosure and offline-prototype badge remained visible and readable.
+- All 15 planned event IDs produced paired start/end log edges; no unexpected gesture or error was observed.
+- Direct Chrome playback completed at exact neutral. Restart synchronously reproduced the same inspected neutral SVG attributes before countdown.
+- The final 320px viewport and document scroll width both measured 320px; Start, Pause, and Restart were all visible.
+
+The five attributed changes were: local gaze gain (rig), thinking brow/tilt gain (rig), caveat visibility (renderer), small-width disclosure spacing (renderer), and responsive player controls (renderer). The semantic plan and renderer-neutral runtime were deliberately unchanged so replay comparability remained exact.
+
+### Verification
+
+```bash
+npm run check
+npm run demo:dry
+npm run demo:mapping
+npm run --silent demo:render-script
+npm run demo:player
+npm run demo:run
+```
+
+Chrome `file://` checks covered full playback, countdown, pause/restart mechanics, completion, exact neutral, 320px responsive layout, persistent disclosure, and absence of resource requests. Safari and VTube Studio were not tested; VTube remains deferred because organizational IT blocks installation.
+
+## Historical pre-pivot scaffold handoff — 14 July 2026
+
+> This section records the pre-pivot scaffold handoff. ADR 0005 and `STATUS.md` supersede its VTube-first recommendation.
 
 **Review date:** 14 July 2026
 **Review environment:** Node.js 22.16.0, npm 10.9.2, clean source-only copy

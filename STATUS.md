@@ -2,7 +2,7 @@
 
 This file is the source of truth for what exists today. Planning documents describe intended behaviour; this table distinguishes implemented, partial, and unstarted work.
 
-Last clean-check review: **14 July 2026**. See `HANDOFF_REVIEW.md`.
+Last clean-check review: **15 July 2026**. See `HANDOFF_REVIEW.md`.
 
 ## Scaffold readiness
 
@@ -23,13 +23,13 @@ Last clean-check review: **14 July 2026**. See `HANDOFF_REVIEW.md`.
 | Timed VTube hotkey playback | Deferred | Future VTube adapter only |
 | Smoothed VTube parameter injection loop | Deferred | Future VTube adapter only |
 | Durable run folder + JSONL renderer log | Implemented | `npm run demo:run`; exact inputs, diagnostics, script, resolved log, player, manifest, and review notes |
-| Review clip | Ready for review/replay | Durable local SVG bundles are available; M1-009 remains |
+| Comparable offline review/replay | Implemented; Chrome manual review passed | Byte-identical plan/script replays at full and 320px with completed rubric and exact neutral reset |
 | Programmatic LLM planner integration | Not implemented | Phase 2 |
 | OBS virtual camera / Teams | Not started | Later phases |
 
 ## Recommended next issue
 
-Perform the comparable review/replay (M1-009). Chrome has verified player mechanics, neutral reset, the restrained 320 px vocabulary, and deterministic cancelled-run reset.
+Milestone 1 is complete. Choose the next bounded Phase 2 experiment from `ROADMAP.md`; do not resume VTube work unless organizational policy and ADR 0005's criteria allow it.
 
 ## External dependency
 

@@ -55,6 +55,7 @@ test("generator is deterministic, self-contained, and embeds playback and neutra
   for (const text of ["<svg", "mouth-open", "HANDOFF TO DAVID", ">Start<", "Pause", "Restart", "countdown", "visualMapping", "renderScript", "neutralControls", "currentState", plan.tracks.overlays![0]!.text, "offline prototype", "current"]) assert.ok(a.includes(text), text);
   assert.doesNotMatch(a, /(?:https?:|<script[^>]+src=|<link\b|\b(?:fetch|XMLHttpRequest|WebSocket|import)\s*\()/i);
   assert.doesNotMatch(a, /Math\.random|setInterval/);
+  assert.match(a, /@media\(max-width:420px\).*\.restart\{grid-column:3\}/);
   assert.match(a, /countdown" hidden>3/); assert.match(a, /status">Ready</); assert.match(a, /let mode='ready'/);
   assert.match(a, /start\.addEventListener\('click',begin\)/); assert.match(a, /function restart\(\).*setNeutral\(\);status\.classList\.remove\('error'\).*mode='countdown'/s); assert.match(a, /at>=data\.metadata\.durationMs\)\{setNeutral\(\)/);
   assert.match(a, /current\.textContent=frame\.currentState\|\|'neutral'/); assert.match(a, /\(n%60000\)\/1000/);
@@ -81,7 +82,7 @@ test("reference states have distinct restrained control fingerprints and intenti
   const deferring = controlsAt(26000);
   const neutral = controlsAt(28000);
 
-  assert.ok(listening["avatar-head-y"]! > 0 && listening["avatar-gaze-y"]! > 0);
+  assert.ok(listening["avatar-head-y"]! > 0 && listening["avatar-gaze-y"]! >= .12);
   assert.ok(thinking["avatar-gaze-x"]! < 0 && thinking["avatar-gaze-y"]! > listening["avatar-gaze-y"]! && thinking["avatar-brows"]! < 0);
   assert.ok(agreement["avatar-smile"]! > 0);
   assert.ok(uncertain["avatar-caveat"]! > 0 && uncertain["avatar-head-z"]! > 0);

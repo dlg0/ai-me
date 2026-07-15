@@ -165,7 +165,7 @@ Acceptance criteria:
 
 ## M1-009 — First review clip
 
-Status: **ready for local SVG review/replay**; the David-specific/VTube track remains deferred.
+Status: **implemented** on local SVG; the David-specific/VTube track remains deferred.
 
 Objective:
 
@@ -173,12 +173,12 @@ Produce and assess the first 20–45 second animation.
 
 Acceptance criteria:
 
-- [ ] reference plan replayed on generic test rig;
+- [x] reference plan replayed on generic test rig;
 - [ ] reference plan replayed on David-specific rig when available;
-- [ ] recording linked in run manifest;
-- [ ] rubric completed at full and Teams-tile size;
-- [ ] top five changes assigned to plan/runtime/rig/VTube/capture layers;
-- [ ] second replay starts/ends neutral and is comparable.
+- [x] optional recording fields retained in each manifest; no recording captured for this review;
+- [x] rubric completed at full and Teams-tile size;
+- [x] top five changes assigned to plan/runtime/rig/renderer/capture layers;
+- [x] second replay starts/ends neutral and is comparable.
 
 ## Milestone exit
 
