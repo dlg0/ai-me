@@ -33,7 +33,7 @@ Last clean-check review: **15 July 2026**. See `HANDOFF_REVIEW.md`.
 
 ## Recommended next issue
 
-Complete the evidence-bound human preference for comparison `20260715T033734.742Z-0a5567c07680`, then finalize the Phase 2 trace and close `aime-rmz.6`.
+Complete the evidence-bound human preference for the guided comparison `20260715T072026.184Z-0a5567c07680`, then finalize the Phase 2 trace and close `aime-rmz.6`.
 
 ## External dependency
 

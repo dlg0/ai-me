@@ -11,7 +11,7 @@ import { assertCompletedComparisonReview, createLocalSvgComparison } from "./com
 
 const fixture = (name: string) => readFileSync(resolve(process.cwd(), `../../examples/${name}`), "utf8");
 const base = JSON.parse(fixture("example-animation-plan.json"));
-const second = structuredClone(base); second.title = "Distinct restrained candidate"; second.tracks.states[1].reason = "Alternative semantic reason";
+const second = structuredClone(base); second.title = "Distinct restrained candidate"; second.tracks.states[1].reason = "Alternative semantic reason"; second.tracks.states[1].intensity = 0.4; second.tracks.gestures[0].startMs = 1600; second.tracks.speech[0].durationMs = 8000;
 const scenario: ScenarioCase = { id: "compare", title: "Compare", brief: "Compare", targetRig: base.targetRig, durationMs: { min: base.durationMs, max: base.durationMs }, expectations: {} };
 class Fake implements RawPlannerProvider {
   index = 0;
@@ -127,4 +127,28 @@ test("comparison HTML is offline, load-gated, responsive, review-complete, and i
   assert.match(html, /@media\(max-width:680px\).*candidate-grid\{grid-template-columns:1fr\}/);
   for (const marker of ["rubric-notes", "check-notes", "data-observation-row", "review-error", "invalidLayer", "reviewStatus='pending'"]) assert.ok(html.includes(marker), marker);
   assert.match(html, /"preference":null/);
+});
+
+test("comparison explains silent review, semantic differences, anchored rubric, readable checks, and explicit score copying", async () => {
+  const { result } = await bundle();
+  const html = readFileSync(join(result.comparisonDirectory, "comparison.html"), "utf8");
+  assert.match(html, /No audio is expected in this milestone/);
+  assert.match(html, /Speech events only time the speaking and mouth posture/);
+  assert.match(html, /Equal scores plus <strong>no preference<\/strong> are valid/);
+  assert.match(html, /State vocabulary is the same and state order is the same/);
+  assert.match(html, /Gesture vocabulary is the same and gesture sequence is the same/);
+  assert.match(html, /Differences are primarily timing and intensity/);
+  assert.match(html, /thinking 4\.5s–9\.7s \(5\.2s, intensity 0\.4\)/);
+  assert.match(html, /micro_nod at 1\.6s/);
+  assert.match(html, /qualified_answer at 15\.5s for 8s/);
+  for (const label of ["State legibility", "Restraint", "Temporal coherence", "Epistemic legibility", "Rig stability and reset", "Small-tile readability", "Disclosed prototype identity", "Repeatability"]) assert.ok(html.includes(label), label);
+  for (const anchor of ["1 — ", "3 — ", "5 — "]) assert.ok(html.includes(anchor), anchor);
+  for (const label of ["Listening is distinct from idle", "Any agreement is restrained; no inappropriate agreement appears if absent", "Playback ends neutral", "Disclosure remains readable"]) assert.ok(html.includes(label), label);
+  assert.match(html, /pair-level stop, safety, and lifecycle checks/);
+  assert.match(html, /type="button" id="copy-scores">Copy left scores to right/);
+  assert.match(html, /rubric-score\[data-side="left"\].*right\.value=left\.value/);
+  const review = JSON.parse(readFileSync(join(result.comparisonDirectory, "review-record.json"), "utf8"));
+  assert.deepEqual(Object.keys(review.rubric.left), ["stateLegibility", "restraint", "temporalCoherence", "epistemicLegibility", "rigStability", "smallTileReadability", "prototypeIdentity", "repeatability"]);
+  assert.ok(Object.values(review.rubric).flatMap((side: any) => Object.values(side)).every((item: any) => item.score === null && item.notes === null));
+  assert.equal(review.preference, null); assert.equal(review.rationale, null); assert.ok(Object.values(review.requiredChecks).every((item: any) => item.value === null));
 });
