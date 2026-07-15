@@ -61,6 +61,23 @@ test("generator is deterministic, self-contained, and embeds playback and neutra
   assert.match(a, /current\.textContent=frame\.currentState\|\|'neutral'/); assert.match(a, /\(n%60000\)\/1000/);
 });
 
+test("embedded player accepts only exact versioned parent commands and preserves neutral lifecycle", () => {
+  const html = generateLocalSvgPlayer(plan, profile);
+  assert.match(html, /event\.source!==parent/);
+  assert.match(html, /m\.protocol!=='local-svg-player-control\.v1'/);
+  assert.match(html, /Object\.keys\(m\)\.some\(k=>!\['protocol','command','startAtEpochMs'\]\.includes\(k\)\)/);
+  assert.match(html, /\['start','pause','resume','restart'\]\.includes\(m\.command\)/);
+  assert.match(html, /Number\.isSafeInteger\(m\.startAtEpochMs\)/);
+  assert.match(html, /!timed&&'startAtEpochMs'in m/);
+  assert.match(html, /nextStartAt=m\.startAtEpochMs;restart\(\)/);
+  assert.match(html, /togglePause\(m\.command==='pause'\)/);
+  assert.match(html, /window\.parent!==window.*\.panel.*hidden=true/);
+  assert.match(html, /\.panel\[hidden\]\{display:none\}/);
+  assert.doesNotMatch(html, /window\.frameElement/);
+  assert.match(html, /function restart\(\).*setNeutral\(\)/s);
+  assert.match(html, /at>=data\.metadata\.durationMs\)\{setNeutral\(\)/);
+});
+
 test("generated reference frames expose plan-derived semantic state names", () => {
   const payload = playerPayload(generateLocalSvgPlayer(plan, profile));
   assert.equal(payload.frames.find(frame => frame.atMs === 0)?.currentState, "listening");

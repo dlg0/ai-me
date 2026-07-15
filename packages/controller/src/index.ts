@@ -15,5 +15,6 @@ export * from "./runtime/render-script.js";
 export * from "./local-svg/mapping.js";
 export * from "./local-svg/player.js";
 export * from "./local-svg/run-artifacts.js";
+export * from "./local-svg/comparison.js";
 export * from "./vtube/client.js";
 export * from "./vtube/mapping.js";

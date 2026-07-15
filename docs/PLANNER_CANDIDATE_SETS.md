@@ -30,3 +30,16 @@ npm run planner:diff -- runs/planner-candidates/<set-id> \
 ```
 
 This writes `<output-prefix>.json` and `<output-prefix>.md`. The semantic diff ignores model event IDs, event reasons, and planner notes; it never compiles frames or reads a rig profile.
+
+## Offline side-by-side review
+
+Render exactly two successful candidates with one matching first-party `local_svg` rig:
+
+```bash
+npm run planner:compare -- runs/planner-candidates/<set-id> \
+  <left-candidate-id> <right-candidate-id> examples/rig-profile.local-svg.json runs/comparisons
+```
+
+The command is offline and keyless. It creates a non-overwriting comparison directory containing two complete nested local-SVG runs, semantic diff JSON/Markdown, `comparison.html`, a pending `review-record.json`, and a checksummed manifest. A top-level `sources/` directory preserves exact candidate-set manifest, prompt, scenario, plans, attempt provenance, and rig-profile bytes so the bundle is independently auditable. Every manifest artifact binding contains both its bundle-relative `path` and `sha256`. Open `comparison.html` directly with `file://`; its players are sandboxed `srcdoc` documents and global controls use one shared future start timestamp. At narrow widths the approximately 320px columns stack.
+
+Complete the human-only rubric and preference (`left`, `right`, `tie`, or `no-preference`) in the page, then download the evidence-bound JSON record. The page does not infer scores or preferences. Provider calls, rig changes, frame compilation in planner code, capture, voice, and live-meeting integration are non-goals.
