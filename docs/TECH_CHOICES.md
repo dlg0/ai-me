@@ -2,13 +2,13 @@
 
 ## Milestone 1 renderer — first-party local SVG
 
-A deterministic fixed-tick script will generate a self-contained HTML/SVG player opened via `file://`. It will require no network, external app, or licensed model asset and will render full-duration disclosure. This path is accepted by ADR 0005 but is not yet implemented.
+A deterministic fixed-tick script generates a self-contained HTML/SVG player opened via `file://`. It requires no network, external app, or licensed model asset and renders full-duration disclosure. This completed path is accepted by ADR 0005.
 
 The semantic plan remains renderer-agnostic; a `local_svg` rig profile and adapter own SVG-specific controls.
 
-## Deferred renderer — VTube Studio + Live2D
+## Archival renderer evaluation — VTube Studio + Live2D
 
-Rationale:
+The following historical rationale is retained for context; this renderer is not on the active roadmap:
 
 - strong fit for layered/stylised 2D avatars;
 - mature rigging and runtime ecosystem;
@@ -17,11 +17,11 @@ Rationale:
 - works on macOS;
 - integrates cleanly with later OBS capture.
 
-VTube Studio is an adapter, not the animation ontology.
+The evaluation reinforced that any renderer is an adapter, not the animation ontology.
 
-## Avatar authoring — Live2D Cubism workflow
+## Archival avatar-authoring option — Live2D Cubism
 
-Use an existing Live2D model for controller development. Prepare the final avatar as a parallel asset track using layered/reconstructed artwork and explicit VTube mappings.
+No Live2D asset track is active. The old notes remain available if a future, separately approved renderer decision needs them.
 
 Do not attempt to build a custom 2D deformation/rigging engine in this project.
 
@@ -43,9 +43,9 @@ JSON Schema handles structure and controlled vocabularies. TypeScript diagnostic
 
 Do not force temporal/domain rules into unreadable JSON Schema when ordinary tested code is clearer.
 
-## Deferred VTube API client decision
+## Closed VTube API client decision
 
-The repository contains a small protocol client scaffold. Make no client choice unless ADR 0005's policy-approved installation criteria are met. ADR 0004 retains the future comparison criteria.
+The repository contains a small archival protocol client scaffold. No production client was selected, and the related issues were closed as superseded. ADR 0004 retains the historical comparison criteria.
 
 Decision criteria:
 
@@ -57,7 +57,7 @@ Decision criteria:
 - amount of wrapper code still required;
 - long-term control over logging and playback semantics.
 
-Choose one path and record an ADR. Do not keep two overlapping production clients.
+Any future external-renderer work must begin with a new ADR and scoped issues.
 
 ## Capture/output — OBS
 

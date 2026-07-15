@@ -19,7 +19,7 @@ This isolates the expressive-control problem from Teams, transcription, voice cl
 - `animation-plan.v1` JSON;
 - a matching `local_svg` `rig-profile.v1` file.
 
-The path must require no network, external application, or licensed model asset. VTube/Live2D is a deferred optional adapter (ADR 0005), not a prerequisite.
+The path requires no network, external application, or licensed model asset. The prior VTube/Live2D work was superseded by this completed alternative (ADR 0005).
 
 ## Inputs
 
@@ -130,9 +130,9 @@ The local player renders a full-duration AI-delegate disclosure from review meta
 7. Review/replay the 20–45 second reference scene at approximately 320 px.
 8. Revise the vocabulary and mappings from recorded review evidence.
 
-## Deferred optional VTube adapter
+## Superseded VTube adapter
 
-The existing VTube scaffold and detailed setup/asset documents remain reference material. Do not install around organizational policy or claim VTube evidence. Resume only under ADR 0005's approval and usability criteria.
+The existing VTube scaffold and detailed setup/asset documents remain archival reference material. Their Beads issues are closed as superseded; no VTube evidence is claimed. Do not install around organizational policy or restart that work without a fresh decision and newly scoped issues.
 
 ## Non-goals
 

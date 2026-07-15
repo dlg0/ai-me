@@ -2,22 +2,22 @@
 
 ## Mission
 
-Complete the first offline local SVG playback loop for a disclosed, stylised AI delegate.
+Build the next bounded planner-iteration capability on top of the completed offline local SVG playback loop.
 
 ## Source of truth
 
-Read `STATUS.md` before selecting work. Planning files describe intended capabilities; only the status table, tests, and manual VTube evidence establish completion.
+Read `STATUS.md` before selecting work. Planning files describe intended capabilities; only the status table, tests, and recorded review evidence establish completion.
 
 ## Required reading order
 
 1. `AGENTS.md`
 2. `OBJECTIVE.md`
 3. `STATUS.md`
-4. `docs/MILESTONE_1_OFFLINE_RENDER.md`
+4. `ROADMAP.md`
 5. `docs/ARCHITECTURE.md`
 6. `docs/CONTROL_SCHEMA.md`
-7. `docs/RIGGING_SPEC.md`
-8. `tasks/milestone-1-issues.md`
+7. `prompts/animation-planner.md`
+8. `examples/scenario-briefs.md`
 
 ## Baseline verification
 
@@ -32,11 +32,9 @@ Do not begin implementation until the baseline passes. Do not weaken tests or sc
 
 ## Recommended next assignment
 
-Implement ADR 0005's current critical path: `local_svg` rig profile → deterministic fixed-tick abstract render script → self-contained `file://` HTML/SVG player → restrained mapping → durable artifacts → review/replay. None of these SVG capabilities has visual completion evidence yet.
+Milestone 1's local SVG path is complete. Scope the first Phase 2 issue around a provider-independent planner evaluation contract: a versioned brief corpus, deterministic candidate validation report, and held-out acceptance metrics. Add a provider adapter only after that contract is reviewable.
 
-## Parallel asset assignment
-
-A separate agent/artist can progress `tasks/avatar-asset-track.md` using `docs/ASSET_PIPELINE.md`. Runtime work must remain testable with a generic Live2D model.
+The old VTube and Live2D tasks are closed as superseded. Their documents remain archival reference only and are not parallel assignments.
 
 ## Optimise for
 
@@ -45,7 +43,7 @@ A separate agent/artist can progress `tasks/avatar-asset-track.md` using `docs/A
 - actionable local failures;
 - structured logs;
 - calm visual output;
-- strict separation between semantics, runtime, rig profile, and VTube protocol;
+- strict separation between semantics, runtime, rig profile, renderer, and future provider adapters;
 - safe reset/cancellation.
 
 ## Do not optimise for yet
@@ -65,7 +63,6 @@ Each implementation PR must include:
 1. milestone issue and acceptance criteria addressed;
 2. exact commands run;
 3. automated test result;
-4. manual VTube test steps/results where relevant;
-5. model/rig assumptions;
-6. sample log or screenshot for user-visible behaviour;
-7. remaining limitations and deliberately excluded scope.
+4. model/rig and provider assumptions;
+5. sample report, log, or screenshot for user-visible behaviour;
+6. remaining limitations and deliberately excluded scope.

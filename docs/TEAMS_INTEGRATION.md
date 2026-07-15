@@ -5,7 +5,7 @@
 After offline playback is stable:
 
 ```text
-VTube Studio renders the avatar
+Local renderer supplies the avatar scene
         ↓
 OBS captures/composes the scene
         ↓

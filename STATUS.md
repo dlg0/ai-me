@@ -18,10 +18,10 @@ Last clean-check review: **15 July 2026**. See `HANDOFF_REVIEW.md`.
 | Deterministic fixed-tick abstract render script | Implemented | `npm run demo:render-script`; pure `render-script.v1` JSONL consumed by the local player |
 | Self-contained `file://` HTML/SVG player | Implemented; Chrome manual check passed | `npm run demo:player`; Start/countdown/pause/restart/completion and exact neutral reset reviewed |
 | Restrained SVG mannerism mapping | Implemented; Chrome visual review passed | Distinct listening, thinking, agreement, caveat, speaking-ready, deferral, and neutral states reviewed at 320 px |
-| VTube WebSocket connection | Client scaffold only | API-state request exists; no production authentication/session wrapper |
-| VTube authentication/token persistence | Deferred | IT policy blocks installation; future adapter only |
-| Timed VTube hotkey playback | Deferred | Future VTube adapter only |
-| Smoothed VTube parameter injection loop | Deferred | Future VTube adapter only |
+| VTube WebSocket connection | Archival scaffold; superseded | API-state request remains for reference; no production integration is planned |
+| VTube authentication/token persistence | Closed as superseded | Replaced by the dependency-free local SVG path; never implemented |
+| Timed VTube hotkey playback | Closed as superseded | Deterministic abstract scheduling and local SVG playback provide the active alternative |
+| Smoothed VTube parameter injection loop | Closed as superseded | Runtime easing and bounded local SVG control resolution provide the active alternative |
 | Durable run folder + JSONL renderer log | Implemented | `npm run demo:run`; exact inputs, diagnostics, script, resolved log, player, manifest, and review notes |
 | Comparable offline review/replay | Implemented; Chrome manual review passed | Byte-identical plan/script replays at full and 320px with completed rubric and exact neutral reset |
 | Programmatic LLM planner integration | Not implemented | Phase 2 |
@@ -29,8 +29,8 @@ Last clean-check review: **15 July 2026**. See `HANDOFF_REVIEW.md`.
 
 ## Recommended next issue
 
-Milestone 1 is complete. Choose the next bounded Phase 2 experiment from `ROADMAP.md`; do not resume VTube work unless organizational policy and ADR 0005's criteria allow it.
+Milestone 1 is complete. Start Phase 2 with a provider-independent planner evaluation contract and held-out scenario corpus before adding an LLM API adapter.
 
 ## External dependency
 
-No external application or licensed model asset is required for the Milestone 1 SVG path. VTube/Live2D and the David-specific avatar work remain deferred reference tracks described in `docs/ASSET_PIPELINE.md`.
+No external application or licensed model asset is required for the active SVG path. VTube/Live2D and the old David-specific avatar documents are archival references, not active work; any future external renderer requires a fresh decision and scope.

@@ -2,7 +2,7 @@
 
 ## Status
 
-Deferred by [ADR 0005](0005-local-svg-renderer.md). Make no client choice without a policy-approved, usable VTube Studio installation.
+Closed without a client decision; superseded by [ADR 0005](0005-local-svg-renderer.md) and the completed local SVG path. This is archival comparison material, not active work.
 
 ## Context
 
@@ -56,4 +56,4 @@ Use a generic Live2D test model. Record code size, wrapper complexity, observed 
 
 ## Decision
 
-Deferred. If the VTube adapter resumes under ADR 0005's criteria, choose exactly one production client using evidence from the approved installation; until then the existing thin client remains a non-production scaffold.
+No production client was selected or implemented. If an external-renderer direction is proposed later, make a fresh ADR and create newly scoped issues rather than reopening this decision. The existing thin client remains a non-production archival scaffold.

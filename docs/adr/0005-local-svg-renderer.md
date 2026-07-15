@@ -2,7 +2,7 @@
 
 ## Status
 
-Accepted — 2026-07-14.
+Accepted — 2026-07-14. Milestone completed and VTube issue track closed as superseded — 2026-07-15.
 
 ## Context
 
@@ -12,7 +12,7 @@ Organizational IT policy blocks installation of VTube Studio on the review Mac. 
 
 Milestone 1 will use a deterministic, dependency-free, first-party local SVG renderer. A `local_svg` rig profile maps abstract runtime controls to renderer-specific SVG controls. A fixed-tick render script produces a self-contained HTML/SVG player that opens via `file://`, needs no network, external application, or licensed model assets, and displays full-duration AI-delegate disclosure.
 
-The target remains a 20–45 second review at approximately 320 px. The player, profile, fixed-tick renderer, restrained mappings, and durable artifacts are planned and are not yet implemented.
+The implemented target is a 20–45 second review at approximately 320 px. The player, profile, fixed-tick renderer, restrained mappings, durable artifacts, and comparable review/replay are complete.
 
 ## Alternatives
 
@@ -28,9 +28,9 @@ The planner still emits renderer-agnostic communicative intent. The runtime stil
 
 - Milestone 1 can be reviewed entirely offline from durable files.
 - Abstract SVG visuals test behaviour and disclosure, not Live2D fidelity or VTube integration.
-- VTube code and documentation remain as a deferred adapter scaffold; no VTube evidence is implied.
+- VTube code and documentation remain as archival scaffold/reference material; no VTube evidence is implied.
 - Later adapters can replay the same semantic contract while using their own rig profiles.
 
-## VTube resumption criteria
+## Future external-renderer criteria
 
-Resume VTube adapter selection and implementation only when organizational policy explicitly permits a usable local VTube Studio installation, required licensing is accepted, Plugin API access can be enabled, and a legitimately available model can be tested. At that point ADR 0004 may be reconsidered and manual evidence must be gathered on the approved installation.
+Do not reopen the superseded VTube issues. Any future external renderer requires a fresh ADR and newly scoped issues, organizational-policy approval, accepted licensing, a legitimately available test asset, and manual evidence from the approved installation.

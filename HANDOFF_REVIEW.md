@@ -37,7 +37,7 @@ npm run demo:player
 npm run demo:run
 ```
 
-Chrome `file://` checks covered full playback, countdown, pause/restart mechanics, completion, exact neutral, 320px responsive layout, persistent disclosure, and absence of resource requests. Safari and VTube Studio were not tested; VTube remains deferred because organizational IT blocks installation.
+Chrome `file://` checks covered full playback, countdown, pause/restart mechanics, completion, exact neutral, 320px responsive layout, persistent disclosure, and absence of resource requests. Safari and VTube Studio were not tested; the VTube issue track was subsequently closed as superseded, with no VTube evidence claimed.
 
 ## Historical pre-pivot scaffold handoff — 14 July 2026
 

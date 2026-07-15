@@ -1,14 +1,12 @@
 # Backlog
 
-## After authenticated preflight
+## Milestone 1 follow-ups
 
 - plan/profile diff command;
-- preflight report as JSON plus human-readable text;
 - deterministic fake renderer for scheduler tests;
 - timeline SVG/HTML visualisation;
 - run-manifest schema;
 - reviewer scoring aggregation;
-- `npm run demo:vtube` only after it truly animates VTube Studio.
 
 ## Planner phase
 

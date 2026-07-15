@@ -1,6 +1,8 @@
 # Avatar Asset Track
 
-This workstream runs in parallel with the controller. Follow `docs/ASSET_PIPELINE.md` and `docs/RIGGING_SPEC.md`.
+> **Archived:** this Live2D/VTube checklist was superseded by the completed first-party local SVG rig. It is not active work and should not be resumed without a fresh renderer/asset decision and newly scoped issues.
+
+Historically, this workstream was intended to run in parallel with the controller using `docs/ASSET_PIPELINE.md` and `docs/RIGGING_SPEC.md`.
 
 ## A-001 — Select source avatar and record rights/provenance
 

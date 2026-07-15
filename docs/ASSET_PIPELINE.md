@@ -1,18 +1,20 @@
 # Avatar Asset Pipeline
 
+> **Archival reference:** this Live2D/VTube workstream was superseded by the completed first-party local SVG rig and is not active backlog. Any future asset/renderer effort requires a fresh decision and newly scoped issues.
+
 ## Purpose
 
 Turn a selected existing avatar or illustration into a controllable Live2D asset without blocking runtime development.
 
 The desired visual style may deliberately expose its construction: discrete eyes, brows, mouth forms, head/torso pieces, and stylised transitions can become part of the delegate's identity. The system does not need to conceal that it is a puppet.
 
-## Two-track strategy
+## Historical two-track strategy
 
 ### Track A — Generic integration rig
 
 Use any known-good Live2D model to implement VTube authentication, preflight, hotkeys, parameter injection, timing, reset, and logging.
 
-This track proves the code and should begin immediately.
+This was the proposed integration track; it was not executed and should not be started from this document.
 
 ### Track B — David-specific avatar
 

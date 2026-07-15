@@ -61,7 +61,7 @@ Local SVG avatar for Milestone 1
 Review recording, then later OBS/Teams
 ```
 
-The first deliverable is a reviewable offline animation in a self-contained local player. VTube Studio/Live2D remains a deferred future renderer and asset path. The larger product may become a local or independently visible AI meeting delegate.
+The first deliverable is a reviewable offline animation in a self-contained local player. That local SVG path is now the active renderer; the earlier VTube Studio/Live2D track was closed as superseded. The larger product may become a local or independently visible AI meeting delegate.
 
 ## Parallel workstreams
 
@@ -71,7 +71,7 @@ Build validation, mapping, playback, review artefacts, and eventually planning/l
 
 ### Avatar artwork and rigging
 
-For Milestone 1, create a small first-party SVG avatar and publish a versioned `local_svg` rig profile. A later, policy-approved asset track may take an existing avatar or illustration, separate/redraw expressive parts, rig them in Live2D, configure VTube Studio inputs/hotkeys, and publish its own rig profile.
+Milestone 1 created a small first-party SVG avatar and versioned `local_svg` rig profile. A later asset or renderer track may adapt an existing avatar or illustration, but it must start with a fresh decision, preserve the same semantic boundary, and publish its own rig profile.
 
 These workstreams meet at the rig profile. Neither should embed assumptions that make the other impossible to change.
 

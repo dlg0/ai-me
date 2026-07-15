@@ -16,13 +16,13 @@ ADR 0005 replaces VTube Studio as the first Milestone 1 renderer because organiz
 
 The local player must require no network, external application, or licensed model asset and must display AI-delegate disclosure for the full duration. The planner remains renderer-agnostic; the runtime owns time/easing/conflicts/reset; SVG-specific identifiers stay in the rig profile or adapter.
 
-## Deferred VTube track
+## Superseded VTube track
 
-The VTube model, client decision, authenticated session/preflight, hotkey playback, and parameter injection Beads issues are deferred, not complete. Do not bypass organizational policy, fabricate model identifiers or tokens, or claim manual evidence. Resume only when ADR 0005's approval and usability criteria are met.
+The VTube model, client decision, authenticated session/preflight, hotkey playback, and parameter injection Beads issues are closed as superseded by completed local SVG issues. No VTube implementation or manual evidence is claimed. Do not bypass organizational policy or reopen those issues; a future external-renderer direction requires a fresh decision and newly scoped work.
 
 ## Pre-pivot scaffold checklist
 
-The sections below record the acceptance criteria that shaped the existing scaffold and deferred VTube issues. Their old status/next-work labels are not current instructions.
+The sections below record the acceptance criteria that shaped the existing scaffold and superseded VTube issues. They are historical context, not current instructions.
 
 ## M1-001 — Animation-plan validation CLI
 
@@ -60,7 +60,7 @@ Remaining rig discovery belongs to M1-004 preflight.
 
 ## M1-004 — Authenticated VTube session and preflight
 
-Status: **next / not implemented**.
+Status: **closed as superseded** by the local SVG profile, validation, player, and durable diagnostics; not implemented for VTube.
 
 Objective:
 
@@ -90,7 +90,7 @@ Non-goal: timed playback.
 
 ## M1-005 — Clocked hotkey playback
 
-Status: **deferred**; VTube Studio installation is blocked by organizational IT policy.
+Status: **closed as superseded** by the renderer-neutral scheduler and local SVG player; not implemented for VTube.
 
 Objective:
 
@@ -111,7 +111,7 @@ Acceptance criteria:
 
 ## M1-006 — Smoothed parameter injection loop
 
-Status: **deferred**; VTube Studio installation is blocked by organizational IT policy.
+Status: **closed as superseded** by the renderer-neutral easing runtime and local SVG control mapping; not implemented for VTube.
 
 Objective:
 
@@ -165,7 +165,7 @@ Acceptance criteria:
 
 ## M1-009 — First review clip
 
-Status: **implemented** on local SVG; the David-specific/VTube track remains deferred.
+Status: **implemented** on local SVG; the David-specific/VTube criterion was superseded and removed from the active direction.
 
 Objective:
 
@@ -174,7 +174,7 @@ Produce and assess the first 20–45 second animation.
 Acceptance criteria:
 
 - [x] reference plan replayed on generic test rig;
-- [ ] reference plan replayed on David-specific rig when available;
+- Not applicable: the David-specific VTube replay was superseded by the reviewed first-party local SVG rig;
 - [x] optional recording fields retained in each manifest; no recording captured for this review;
 - [x] rubric completed at full and Teams-tile size;
 - [x] top five changes assigned to plan/runtime/rig/renderer/capture layers;

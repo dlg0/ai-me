@@ -2,7 +2,7 @@
 
 You are continuing the AI Delegate Avatar repository.
 
-Read `AGENTS.md` and `STATUS.md` first. Then read the Milestone 1 specification, architecture, control schema, rigging spec, and issue breakdown.
+Read `AGENTS.md`, `STATUS.md`, and `ROADMAP.md` first. Then read the architecture, control schema, planner prompt, and scenario briefs.
 
 Run this baseline before making changes:
 
@@ -13,16 +13,16 @@ npm run demo:dry
 npm run demo:mapping
 ```
 
-The recommended next issue is M1-004: authenticated VTube Studio session and preflight. Start with the bounded comparison in `docs/adr/0004-vtube-api-client-choice.md`, then record the decision; do not build and maintain both clients.
+Milestone 1 is complete. The recommended next assignment is the smallest provider-independent Phase 2 slice: turn the existing planner prompt and scenario briefs into an executable evaluation contract before adding an LLM provider.
 
-Your objective is the smallest truthful step toward actual model playback. A command that only logs intended commands must not be named or documented as though it animates VTube Studio.
+Your objective is to establish a held-out corpus and deterministic acceptance report for candidate `animation-plan.v1` files using the existing schema and semantic diagnostics. Do not add network calls, provider credentials, prompt repair, or renderer changes in the first slice.
 
 Preserve these boundaries:
 
 - planner emits semantics, not raw curves;
 - rig-specific IDs stay outside plan JSON;
-- dry-run/test paths work without VTube;
-- current milestone excludes Teams, voice, transcription, RAG, and photorealism;
+- evaluation and rendering paths remain offline and deterministic;
+- the current phase excludes Teams, voice, transcription, RAG, and photorealism;
 - reset/cancellation and structured logs are mandatory, not polish.
 
-Every PR must include the issue advanced, commands run, tests, manual VTube evidence where relevant, rig assumptions, and remaining limitations.
+The old VTube issues are closed as superseded; its scaffold is archival reference, not a current assignment. Every PR must include the issue advanced, commands run, tests, rig assumptions, and remaining limitations.

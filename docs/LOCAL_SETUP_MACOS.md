@@ -44,9 +44,9 @@ The generated file was opened directly from `file://` in Google Chrome 150.0.787
 
 Result: **player mechanics pass in Chrome**. Safari remains unverified. The top prototype badge is small but readable at 320px. This check does not complete M1-007 taste tuning or the M1-009 comparable review/replay.
 
-## Deferred optional VTube Studio setup
+## Archival VTube Studio setup
 
-**This section is future reference only. Organizational IT policy currently blocks installation. Do not bypass policy or use these steps until installation is explicitly approved.**
+**This section is archival reference only. The associated issues were closed as superseded, and organizational IT policy blocks installation. Do not bypass policy or use these steps as an active project assignment.**
 
 The supported desktop distribution is the official Steam build linked from
 https://denchisoft.com/ (Steam app `1325860`). Do not download a model or app

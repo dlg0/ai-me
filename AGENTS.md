@@ -2,16 +2,17 @@
 
 ## Mission
 
-Build the smallest reviewable loop in which a semantic animation plan drives a stylised avatar through a deterministic, first-party local SVG player. The current target is offline review on David's Mac, not autonomous attendance in Microsoft Teams. VTube Studio is a deferred future adapter because organizational IT policy blocks installation; do not bypass that policy.
+Maintain and extend the completed deterministic, first-party local SVG review loop. The next active target is the offline Phase 2 planner iteration loop, not autonomous attendance in Microsoft Teams. VTube Studio is not on the active roadmap: its old issues are closed as superseded and its scaffold is archival reference only. Do not bypass organizational policy or restart that work without a fresh decision.
 
 ## Read first
 
 1. `OBJECTIVE.md`
 2. `STATUS.md`
-3. `docs/MILESTONE_1_OFFLINE_RENDER.md`
+3. `ROADMAP.md`
 4. `docs/ARCHITECTURE.md`
 5. `docs/CONTROL_SCHEMA.md`
-6. `tasks/milestone-1-issues.md`
+6. `docs/MILESTONE_1_OFFLINE_RENDER.md`
+7. `tasks/milestone-1-issues.md`
 
 ## Mandatory local checks
 
@@ -23,7 +24,7 @@ npm run check
 npm run demo:dry
 ```
 
-Do not claim a task is complete unless `npm run check` passes. A VTube-dependent task must also include a documented manual test against a running local VTube Studio instance.
+Do not claim a task is complete unless `npm run check` passes. Any future external-renderer task requires a fresh approved scope and documented manual evidence from the actual renderer.
 
 ## Architecture invariants
 
@@ -35,17 +36,17 @@ Do not claim a task is complete unless `npm run check` passes. A VTube-dependent
 
 ## Scope boundary
 
-Do not add Teams attendance, synthetic voice, meeting transcription, RAG, or photorealistic rendering before Milestone 1 playback and review are working. OBS/Teams are downstream output plumbing, not the current core problem.
+Do not add Teams attendance, synthetic voice, meeting transcription, RAG, or photorealistic rendering before the Phase 2 planner iteration loop is measurable and reviewable. OBS/Teams are downstream output plumbing, not the current core problem.
 
 ## Current implementation boundary
 
-Schema validation, semantic diagnostics, dry-run playback, rig-profile validation, and mapping inspection are scaffold capabilities. The `local_svg` profile, deterministic render script, player, run artifacts, and visual review are not yet implemented. The VTube client remains a deferred, unauthenticated scaffold. Consult `STATUS.md`; do not infer completion from the presence of a source file.
+Milestone 1 is complete: schema validation, semantic diagnostics, dry-run playback, the `local_svg` profile, deterministic render scripts, the self-contained player, durable run artifacts, and comparable visual review are implemented. Programmatic planner/provider integration, candidate evaluation, and repair are not implemented. The unauthenticated VTube client is an archival scaffold, not an active assignment. Consult `STATUS.md`; do not infer completion from the presence of a source file.
 
 ## Pull-request standard
 
 Each PR must state:
 
-1. the milestone issue advanced;
+1. the Beads issue advanced;
 2. the user-visible capability added;
 3. exact local test steps;
 4. assumptions about the rig/renderer setup;

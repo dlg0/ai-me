@@ -1,6 +1,6 @@
 # Controller Package
 
-TypeScript scaffold for validating semantic animation plans, checking rig profiles, inspecting renderer mappings, and building the Milestone 1 local SVG playback runtime. The VTube Studio client remains a deferred future-adapter scaffold.
+TypeScript package for validating semantic animation plans, checking rig profiles, inspecting renderer mappings, and running the completed Milestone 1 local SVG playback loop. The VTube Studio client is an archival scaffold and is not on the active roadmap.
 
 ## Run from repository root
 
@@ -13,7 +13,7 @@ npm run --silent demo:render-script > /tmp/render-script.jsonl
 npm run demo:player
 ```
 
-## Optional VTube connectivity probe
+## Archival VTube connectivity probe
 
 With VTube Studio running and **Allow Plugin API access** enabled:
 
@@ -23,7 +23,7 @@ npm run probe:vtube --workspace @ai-delegate-avatar/controller
 
 Set `VTS_HOST` or `VTS_PORT` to override `localhost:8001`.
 
-The probe only checks the WebSocket/API state. It does not authenticate or move the model.
+The probe only checks the WebSocket/API state. It does not authenticate or move the model and is retained for historical reference, not as active work.
 
 ## Implemented
 
@@ -34,13 +34,12 @@ The probe only checks the WebSocket/API state. It does not authenticate or move 
 - renderer-neutral semantic controls and local SVG/VTube mapping inspection;
 - pure deterministic `render-script.v1` JSONL compilation with fixed-tick easing, cancellation reset, and terminal invariants;
 - strict local-SVG frame resolution and deterministic self-contained HTML/SVG player generation;
-- thin VTube protocol client scaffold.
+- durable local-SVG run bundles and completed visual review;
+- archival thin VTube protocol client scaffold.
 
 ## Not implemented
 
-- persisted VTube authentication session;
-- timed playback scheduler;
-- manual browser review and visual taste tuning;
-- hotkey/parameter preflight against the loaded model;
-- run artefact folders;
-- recording, TTS, Teams, or LLM API integration.
+- programmatic planner/provider integration and candidate evaluation;
+- automatic recording, TTS, or Teams integration.
+
+VTube authentication, model preflight, hotkey playback, and parameter injection were closed as superseded rather than implemented.

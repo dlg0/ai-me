@@ -26,9 +26,9 @@ Self-contained HTML/SVG player
 Review capture / later OBS virtual camera
 ```
 
-The `local_svg` profile, deterministic runtime, player, and durable run bundle are implemented for Milestone 1. A parallel, deferred asset pipeline may later produce a Live2D model, VTube configuration, and profile.
+The `local_svg` profile, deterministic runtime, player, and durable run bundle are implemented for Milestone 1. The earlier Live2D/VTube asset and adapter path is archival rather than a parallel workstream.
 
-## Critical parameter distinction (VTube example, deferred)
+## Critical parameter distinction (archival VTube example)
 
 There are three different layers that must not be conflated:
 
@@ -36,7 +36,7 @@ There are three different layers that must not be conflated:
 2. **VTube Studio input/tracking parameter or hotkey** — for example `FaceAngleX` or a named hotkey.
 3. **Live2D model parameter** — a parameter inside the rig that VTube Studio maps from an input.
 
-For a future VTube adapter, the controller would inject VTube Studio input parameters and model configuration would map them to the Live2D rig. In every adapter, `rig-profile.v1` describes the abstract-to-renderer boundary; renderer internals stay downstream.
+The VTube example records why renderer inputs and model parameters must not be conflated. In every adapter, `rig-profile.v1` describes the abstract-to-renderer boundary; renderer internals stay downstream.
 
 ## Components
 
@@ -104,9 +104,9 @@ Responsibilities:
 - open via `file://` without network, external apps, or licensed model assets;
 - preserve full-duration disclosure, logs, deterministic replay, and neutral reset.
 
-VTube Studio remains a deferred future adapter. Its scaffold is retained, but client choice and authenticated playback require ADR 0005's resumption criteria.
+The VTube scaffold is retained as archival reference only. It has no active client, session, or playback assignment.
 
-### 6. Avatar asset pipeline
+### 6. Archival avatar asset pipeline
 
 Responsibilities:
 
@@ -117,7 +117,7 @@ Responsibilities:
 - export a matching rig profile;
 - validate expression legibility at small size.
 
-See `ASSET_PIPELINE.md`.
+See `ASSET_PIPELINE.md` for historical reference. This is not an active parallel workstream.
 
 ### 7. Review/capture layer
 
@@ -135,7 +135,7 @@ Responsibilities:
 Early live path:
 
 ```text
-VTube Studio scene/window
+Local renderer/browser scene
         ↓
 OBS scene + disclosure overlay
         ↓
@@ -168,9 +168,9 @@ run folder + optional recording
 
 The local SVG path must fail visibly on plan/profile mismatch, invalid timing, unresolved controls, generation/write failure, or cancellation, and must preserve diagnostics and neutral reset.
 
-### Deferred VTube-specific failures
+### Archival VTube-specific failure requirements
 
-The runtime must fail closed and visibly when:
+If a new decision ever revives this adapter, it must fail closed and visibly when:
 
 - VTube Studio cannot be reached;
 - plugin API access is disabled;
@@ -181,8 +181,8 @@ The runtime must fail closed and visibly when:
 - event timing is invalid;
 - playback is cancelled or the connection closes.
 
-Every future VTube failure path must attempt neutral/reset when a connection remains available.
+Any revived external-renderer failure path must attempt neutral/reset when a connection remains available.
 
 ## Renderer strategy
 
-Local SVG is the Milestone 1 adapter because it is deterministic, dependency-free, and policy-compatible. The project-level schema remains usable by a future policy-approved VTube adapter, Rive, Unity, or other renderers.
+Local SVG is the active adapter because it is deterministic, dependency-free, and policy-compatible. The project-level schema remains renderer-agnostic so a separately approved future adapter can reuse it.

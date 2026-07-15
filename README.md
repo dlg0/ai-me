@@ -41,17 +41,16 @@ Implemented now:
 - restrained local SVG mannerism mapping reviewed at 320px;
 - durable completed/cancelled/error/incomplete run artifacts and checksummed logs;
 - comparable full-size/320px review and replay with exact neutral reset;
-- thin VTube WebSocket protocol client scaffold.
+- an archival thin VTube WebSocket protocol client scaffold retained for reference.
 
-Not implemented yet:
+Not implemented on the active roadmap yet:
 
-- persisted VTube authentication;
-- timed hotkey playback;
-- smoothed/repeated parameter injection;
 - automatic recording;
 - an integrated LLM API call;
 - TTS/lip sync;
 - OBS/Teams live output.
+
+VTube authentication, hotkey playback, and parameter injection were not implemented. Their Milestone 1 issues were closed as superseded by the completed local SVG path; resuming that integration would require a fresh decision and approved environment.
 
 ## Start here
 
@@ -86,10 +85,10 @@ Programmatic LLM integration comes after this loop is visually worth iterating. 
 
 ## Avatar dependency
 
-The local SVG controller and the deferred David-specific artwork are separate workstreams:
+The local SVG controller and any future David-specific artwork are separate workstreams:
 
 - **Milestone 1 runtime track:** use the implemented first-party stylised SVG avatar and versioned `local_svg` profile.
-- **Deferred avatar asset track:** if policy later permits, decompose or redraw selected artwork, rig it, configure VTube inputs/hotkeys, and create a separate profile.
+- **Archival alternate-renderer track:** the old Live2D/VTube notes are retained as reference, but are not active work. Any replacement renderer or David-specific asset should receive a fresh scoped decision and profile.
 
 See [`docs/ASSET_PIPELINE.md`](docs/ASSET_PIPELINE.md). This separation prevents the code team from being blocked while the final avatar is prepared.
 
@@ -127,7 +126,7 @@ templates/                        run/review artefact templates
 2. **Intent first.** The planner chooses semantic states; deterministic code owns timing, smoothing, and bounds.
 3. **Reviewable by construction.** Every behaviour comes from a durable plan that can be diffed and replayed.
 4. **Stillness is allowed.** Professional presence requires restraint, not constant motion.
-5. **Renderer-agnostic ontology.** Local SVG is the Milestone 1 adapter; VTube Studio is a deferred future adapter.
+5. **Renderer-agnostic ontology.** Local SVG is the active adapter; the semantic contract does not preclude a separately approved future renderer.
 6. **Truthful status.** A source-file skeleton is not a completed capability; `STATUS.md` and tests govern handoff claims.
 
 ## First demo scene

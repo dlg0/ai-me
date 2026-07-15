@@ -39,13 +39,9 @@ Runtime deliverables:
 - JSONL renderer log and run folder;
 - full-duration AI-delegate disclosure and review/replay recipe.
 
-Deferred VTube/asset reference track (not required for Phase 1):
+Superseded VTube/asset reference track (closed; archival only):
 
-- generic test rig or known-good model for runtime development;
-- selected David-associated avatar source;
-- layered/reconstructed artwork;
-- minimum viable Live2D rig;
-- configured hotkeys/inputs and matching rig profile.
+The planned VTube test model, API client/session, preflight, hotkey playback, parameter injection, and Live2D asset work were replaced by the completed first-party local SVG profile, runtime, player, and reviewed run bundles. They are not prerequisites or active backlog items. A future external renderer would require a new decision and newly scoped issues rather than reopening this track.
 
 Exit criteria:
 
@@ -72,7 +68,7 @@ Deliverables:
 - plan diff and side-by-side review workflow;
 - review bundle containing plan, rig version, logs, clip, and rubric;
 - an agent-assisted revision step that converts review observations into proposed plan or mapping changes;
-- explicit defect attribution to planner, runtime, rig, VTube configuration, or capture.
+- explicit defect attribution to planner, runtime, rig, renderer, or capture.
 
 Exit criteria:
 
@@ -80,7 +76,7 @@ Exit criteria:
 - plans respect timing, gesture-density, reset, and disclosure constraints;
 - reviewer preference improves over a fixed baseline animation;
 - a second iteration can be traced directly to review evidence rather than opaque prompt drift;
-- invalid model output fails closed rather than reaching VTube Studio.
+- invalid model output fails closed before reaching any renderer.
 
 ## Phase 3 — Speech and lip-sync coordination
 
