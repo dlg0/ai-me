@@ -44,3 +44,7 @@ The probe only checks the WebSocket/API state. It does not authenticate or move 
 - automatic recording, TTS, or Teams integration.
 
 VTube authentication, model preflight, hotkey playback, and parameter injection were closed as superseded rather than implemented.
+
+## Live raw planner smoke test
+
+`npm run planner:smoke -- <scenario-id>` makes one live OpenAI Responses API request and spends API quota. Set `OPENAI_API_KEY` and an explicit `OPENAI_MODEL`; `OPENAI_BASE_URL` and `OPENAI_TIMEOUT_MS` are optional. It prints JSON provenance plus genuinely raw, unvalidated model text. It does not extract, validate, repair, persist, or render a plan, and is intentionally excluded from `npm run check`.

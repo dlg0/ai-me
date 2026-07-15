@@ -24,12 +24,12 @@ Last clean-check review: **15 July 2026**. See `HANDOFF_REVIEW.md`.
 | Smoothed VTube parameter injection loop | Closed as superseded | Runtime easing and bounded local SVG control resolution provide the active alternative |
 | Durable run folder + JSONL renderer log | Implemented | `npm run demo:run`; exact inputs, diagnostics, script, resolved log, player, manifest, and review notes |
 | Comparable offline review/replay | Implemented; Chrome manual review passed | Byte-identical plan/script replays at full and 320px with completed rubric and exact neutral reset |
-| Programmatic LLM planner integration | Not implemented | Phase 2 |
+| Raw programmatic planner integration | Implemented | Provider-neutral boundary, prompt versioning, and opt-in `npm run planner:smoke -- <scenario-id>` OpenAI Responses adapter; output remains unvalidated |
 | OBS virtual camera / Teams | Not started | Later phases |
 
 ## Recommended next issue
 
-Milestone 1 is complete. Start Phase 2 with a provider-independent planner evaluation contract and held-out scenario corpus before adding an LLM API adapter.
+Implement bounded extraction, validation, and repair (`aime-rmz.3`) so raw provider output cannot cross into rendering unless it satisfies the Phase 2 corpus contract.
 
 ## External dependency
 
