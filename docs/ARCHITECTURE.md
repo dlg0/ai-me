@@ -63,6 +63,8 @@ Responsibilities:
 
 Invalid output does not reach the renderer.
 
+The Phase 2 provider-neutral orchestration boundary parses the complete trimmed model text as one JSON object, applies both plan and selected-scenario policy validation (warnings included), and permits one bounded repair by default. Every attempt retains its exact raw response and validation provenance. `npm run planner:generate -- <scenario-id>` is an opt-in live command requiring the OpenAI environment variables; it writes exactly one typed JSON result to stdout and exits nonzero for every terminal failure. It does not persist or render a plan.
+
 ### 3. Mannerism runtime
 
 Responsibilities:

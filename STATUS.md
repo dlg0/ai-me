@@ -24,12 +24,13 @@ Last clean-check review: **15 July 2026**. See `HANDOFF_REVIEW.md`.
 | Smoothed VTube parameter injection loop | Closed as superseded | Runtime easing and bounded local SVG control resolution provide the active alternative |
 | Durable run folder + JSONL renderer log | Implemented | `npm run demo:run`; exact inputs, diagnostics, script, resolved log, player, manifest, and review notes |
 | Comparable offline review/replay | Implemented; Chrome manual review passed | Byte-identical plan/script replays at full and 320px with completed rubric and exact neutral reset |
-| Raw programmatic planner integration | Implemented | Provider-neutral boundary, prompt versioning, and opt-in `npm run planner:smoke -- <scenario-id>` OpenAI Responses adapter; output remains unvalidated |
+| Raw programmatic planner integration | Implemented | Provider-neutral boundary, prompt versioning, and opt-in raw-only `npm run planner:smoke -- <scenario-id>` OpenAI Responses adapter |
+| Bounded planner orchestration | Implemented | Strict whole-text extraction, scenario validation, one repair by default, typed provenance, and opt-in `npm run planner:generate -- <scenario-id>` |
 | OBS virtual camera / Teams | Not started | Later phases |
 
 ## Recommended next issue
 
-Implement bounded extraction, validation, and repair (`aime-rmz.3`) so raw provider output cannot cross into rendering unless it satisfies the Phase 2 corpus contract.
+Persist validated planner run artifacts (`aime-rmz.4`); generation currently prints provenance only and does not persist or render.
 
 ## External dependency
 

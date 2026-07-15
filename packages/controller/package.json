@@ -18,6 +18,7 @@
     "create:run": "tsx src/cli/create-local-svg-run.ts",
     "evaluate:plans": "tsx src/cli/evaluate-plans.ts",
     "planner:smoke": "tsx src/cli/planner-smoke.ts",
+    "planner:generate": "tsx src/cli/planner-generate.ts",
     "probe:vtube": "tsx src/cli/probe-vtube.ts"
   },
   "dependencies": {

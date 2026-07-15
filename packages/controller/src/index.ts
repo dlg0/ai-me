@@ -6,6 +6,7 @@ export * from "./planner/evaluate-corpus.js";
 export * from "./planner/provider.js";
 export * from "./planner/prompt.js";
 export * from "./planner/openai-responses.js";
+export * from "./planner/orchestrate.js";
 export * from "./runtime/mapping.js";
 export * from "./runtime/timeline.js";
 export * from "./runtime/render-script.js";
