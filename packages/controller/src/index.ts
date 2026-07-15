@@ -7,6 +7,8 @@ export * from "./planner/provider.js";
 export * from "./planner/prompt.js";
 export * from "./planner/openai-responses.js";
 export * from "./planner/orchestrate.js";
+export * from "./planner/candidate-set.js";
+export * from "./planner/semantic-diff.js";
 export * from "./runtime/mapping.js";
 export * from "./runtime/timeline.js";
 export * from "./runtime/render-script.js";

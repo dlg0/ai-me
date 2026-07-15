@@ -26,11 +26,12 @@ Last clean-check review: **15 July 2026**. See `HANDOFF_REVIEW.md`.
 | Comparable offline review/replay | Implemented; Chrome manual review passed | Byte-identical plan/script replays at full and 320px with completed rubric and exact neutral reset |
 | Raw programmatic planner integration | Implemented | Provider-neutral boundary, prompt versioning, and opt-in raw-only `npm run planner:smoke -- <scenario-id>` OpenAI Responses adapter |
 | Bounded planner orchestration | Implemented | Strict whole-text extraction, scenario validation, one repair by default, typed provenance, and opt-in `npm run planner:generate -- <scenario-id>` |
+| Durable planner candidate sets + semantic diff | Implemented | Bounded sequential generation, non-overwriting checksummed artifacts, duplicate detection, and offline `npm run planner:diff` |
 | OBS virtual camera / Teams | Not started | Later phases |
 
 ## Recommended next issue
 
-Persist validated planner run artifacts (`aime-rmz.4`); generation currently prints provenance only and does not persist or render.
+Render and review planner candidates side by side (`aime-rmz.5`); candidate generation and semantic plan comparison are now durable and remain renderer-independent.
 
 ## External dependency
 
